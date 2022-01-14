@@ -1,0 +1,11 @@
+php_flag magic_qoutes Off  # экранирование строки (функция волшебных кавычек)
+
+AddDefaultCharset utf-8 # Кодировка
+
+DirectoryIndex index.php # входной файл index.php
+
+RewriteEngine on # включить мод rewrite
+
+RewriteCond %{REQUEST_FILENAME} !-f #Условие
+
+RewriteRule ^(.*) index.php # перенаправить на файл index.php
