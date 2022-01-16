@@ -29,10 +29,8 @@ abstract class BaseController
 
             $object->invoke(new $controller, $args);
         }catch (\ReflectionException $e) {
-             throw new RouteException($e);
+             throw new RouteException($e->getMessage());
         }
-
-
     }
 
     public function request($args){
@@ -47,7 +45,7 @@ abstract class BaseController
          $this->page = $this->$outputData();
 
          if($this->errors) {
-             $this->writeLog($this->errors);
+             $this->writeLog(/*$this->errors*/);
          }
 
          $this->getPage();

@@ -6,16 +6,11 @@ use core\base\exceptions\RouteException;
 use core\base\settings\Settings;
 use core\base\settings\ShopSettings;
 
-class RouteController //extends BaseController // отвечает за разбор адресной строки
+class RouteController extends BaseController // RouteController отвечает за разбор адресной строки
 {
     static private $_instance;
 
     protected $routes;
-
-    protected $controller;
-    protected $inputMethod;
-    protected $outputMethod;
-    protected $parameters;
 
     static public function getInstance() {
 
@@ -43,9 +38,11 @@ class RouteController //extends BaseController // отвечает за разб
 
            if(!$this->routes) throw new RouteException('Сайт находится на техническом обслуживании');
 
-           if(strpos($address, $this->routes['admin']['alias']) === strlen(PATH) ){
+           $url = explode('/', substr($address, strlen(PATH)));
 
-               $url = explode('/', substr($address, strlen(PATH . $this->routes['admin']['alias']) + 1 ));
+           if($url[0] && $url[0] === $this->routes['admin']['alias']){
+
+               array_shift($url);
 
                 if($url[0] && is_dir($_SERVER['DOCUMENT_ROOT'] . PATH . $this->routes['plugins']['path'] . $url[0])) {
 
@@ -79,7 +76,7 @@ class RouteController //extends BaseController // отвечает за разб
 
             }else {
 
-               $url = explode('/', substr($address, strlen(PATH)));
+
 
                $hrUrl = $this->routes['user']['hrUrl'];
 
