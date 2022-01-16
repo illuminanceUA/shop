@@ -11,9 +11,9 @@ class Settings
            'alias' => 'admin',
            'path' => 'core/admin/controller/',
            'hrUrl' => false,
-            /*'routes' => [
+            'routes' => [
 
-            ]*/
+            ]
         ],
         'settings' => [
             'path' => 'core/base/settings/'
@@ -27,7 +27,7 @@ class Settings
             'path' => 'core/user/controller/',
             'hrUrl' => true,
             'routes' => [
-                'catalog' => 'site/hello/by'
+
             ]
         ],
         'default' => [
@@ -76,7 +76,6 @@ class Settings
 
             if(is_array($property) && is_array($item)) {
                 $baseProperties[$name] = $this->arrayMergeRecursive($this->$name, $property);
-             //  printArray($baseProperties[$name]);
                 continue;
             }
             if(!$property) $baseProperties[$name] = $this->$name;

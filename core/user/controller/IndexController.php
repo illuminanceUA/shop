@@ -8,7 +8,7 @@ use core\base\controller\BaseController;
  {
 
     protected function inputData(){
-echo 123;
+
      /*   $template = $this->render(false, ['name' => 'Masha']);
 echo 133;
         exit($template);*/

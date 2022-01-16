@@ -2,7 +2,7 @@
 
 defined('VG_ACCESS') or die('Access denied');
 
-const SITE_URL = 'http://im.my';
+const SITE_URL = 'http://localhost';
 const PATH = '/';
 
 const HOST = 'localhost';

@@ -6,11 +6,16 @@ use core\base\exceptions\RouteException;
 use core\base\settings\Settings;
 use core\base\settings\ShopSettings;
 
-class RouteController extends BaseController // отвечает за разбор адресной строки
+class RouteController //extends BaseController // отвечает за разбор адресной строки
 {
     static private $_instance;
 
     protected $routes;
+
+    protected $controller;
+    protected $inputMethod;
+    protected $outputMethod;
+    protected $parameters;
 
     static public function getInstance() {
 
@@ -23,6 +28,7 @@ class RouteController extends BaseController // отвечает за разбо
 
     private function __construct()
     {
+
        $address = $_SERVER['REQUEST_URI'];
 
        if(strrpos($address, '/') === strlen($address) - 1 && strrpos($address, '/') !== 0) {
@@ -37,24 +43,22 @@ class RouteController extends BaseController // отвечает за разбо
 
            if(!$this->routes) throw new RouteException('Сайт находится на техническом обслуживании');
 
-           // $url = explode('/', substr($address, strlen(PATH)));
-
-
-          // if($url[0] && $url[0] === $this->routes['admin']['alias']){
-           if( strpos($address, $this->routes['admin']['alias']) === strlen(PATH) ){
+           if(strpos($address, $this->routes['admin']['alias']) === strlen(PATH) ){
 
                $url = explode('/', substr($address, strlen(PATH . $this->routes['admin']['alias']) + 1 ));
 
                 if($url[0] && is_dir($_SERVER['DOCUMENT_ROOT'] . PATH . $this->routes['plugins']['path'] . $url[0])) {
-//
+
                     $plugin = array_shift($url);
 
                     $pluginSettings = $this->routes['settings']['path'] . ucfirst($plugin . 'Settings');
 
+
                     if(file_exists($_SERVER['DOCUMENT_ROOT'] . PATH . $pluginSettings . '.php')) {
                        $pluginSettings = str_replace('/', '\\', $pluginSettings);
-                       $this->routes = $pluginSettings::get['routes'];
+                       $this->routes = $pluginSettings::get('routes');
                     }
+
                     $dir = $this->routes['plugins']['dir'] ? '/' . $this->routes['plugins']['dir'] . '/' : '/';
                     $dir = str_replace('//', '/', $dir);
 
@@ -108,7 +112,7 @@ class RouteController extends BaseController // отвечает за разбо
                     }
                 }
 
-           exit();
+       //    exit();
 
        }else {
            try {
