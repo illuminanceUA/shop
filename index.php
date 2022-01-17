@@ -13,12 +13,6 @@ require_once 'libraries/functions.php';
 use core\base\exceptions\RouteException;
 use core\base\controller\RouteController;
 
-
-use core\base\settings\Settings;
-
-$s = Settings::get('routes');
-$s1 = Settings::get('templateArr');
-
 try {
    RouteController::instance()->route();
 }
