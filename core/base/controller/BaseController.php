@@ -7,6 +7,8 @@ use core\base\settings\Settings;
 
 abstract class BaseController
 {
+    use \core\base\controller\BaseMethod;
+
     protected $page;
     protected $errors;
 
@@ -14,6 +16,9 @@ abstract class BaseController
     protected $inputMethod;
     protected $outputMethod;
     protected $parameters;
+
+    protected $styles;
+    protected $scripts;
 
     public function route() {
 
@@ -54,7 +59,7 @@ abstract class BaseController
 
 
          if($this->errors) {
-             $this->writeLog(/*$this->errors*/);
+             $this->writeLog($this->errors);
          }
 
          $this->getPage();
@@ -93,5 +98,30 @@ abstract class BaseController
             echo $this->page;
         }
         exit();
+    }
+
+    protected function init($admin = false){
+
+        if(!$admin) {
+
+            if(USER_CSS_JS['styles']){
+                foreach (USER_CSS_JS['styles'] as $item) $this->styles[] = PATH . TEMPLATE . trim($item, '/');
+            }
+
+            if(USER_CSS_JS['scripts']){
+                foreach (USER_CSS_JS['scripts'] as $item) $this->scripts[] = PATH . TEMPLATE . trim($item, '/');
+            }
+
+        }else{
+
+            if(ADMIN_CSS_JS['styles']){
+                foreach (USER_CSS_JS['styles'] as $item) $this->styles[] = PATH . ADMIN_TEMPLATE . trim($item, '/');
+            }
+
+            if(ADMIN_CSS_JS['scripts']){
+                foreach (USER_CSS_JS['scripts'] as $item) $this->scripts[] = PATH . ADMIN_TEMPLATE . trim($item, '/');
+            }
+
+        }
     }
 }
