@@ -30,7 +30,6 @@ class ShopSettings
     }
 
     static private function getInstance(){
-
         if(self::$_instance instanceof self) {
             return self::$_instance;
         }

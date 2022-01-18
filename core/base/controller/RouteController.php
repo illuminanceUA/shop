@@ -65,8 +65,6 @@ class RouteController extends BaseController // RouteController отвечает
 
             }else {
 
-
-
                $hrUrl = $this->routes['user']['hrUrl'];
 
                $this->controller = $this->routes['user']['path'];
