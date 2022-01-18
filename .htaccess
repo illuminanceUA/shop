@@ -6,8 +6,7 @@ DirectoryIndex index.php # входной файл index.php
 
 RewriteEngine on # включить мод rewrite
 
-RewriteCond %{REQUEST_FILENAME} !-f #Условие
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !favicon.ico
 
 RewriteRule ^(.*) index.php # перенаправить на файл index.php

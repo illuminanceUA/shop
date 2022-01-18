@@ -1,0 +1,4 @@
+Fault: 18-01-2022 16:31:57 - Ошибка подключения к базе данных: 1049 Unknown database 'site2'
+file /var/www/core/base/model/BaseModel.php
+In line 19
+

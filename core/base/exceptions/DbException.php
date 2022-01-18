@@ -22,6 +22,6 @@ class DBException extends \Exception
 
   //    if($this->messages[$this->getCode()]) $this->message = $this->messages[$this->getCode()];
 
-      $this->writeLog($error);
+      $this->writeLog($error, 'db_log.txt');
   }
 }

@@ -16,8 +16,8 @@ services:
       - ./Docker/php/php.ini:/usr/local/etc/php/php.ini
     environment:
       COMPOSER_MEMORY_LIMIT: 2G
-      XDEBUG_CONFIG: client_host=172.17.0.1 client_port=9003 remote_enable=1
-      PHP_IDE_CONFIG: serverName=Docker
+     # XDEBUG_CONFIG: client_host=host.docker.internal client_port=9000 remote_enable=1
+      PHP_IDE_CONFIG:  serverName=Docker
 
 
   db:

@@ -14,7 +14,7 @@ class IndexController extends BaseController
 
 
 
-     //  $db = BaseModel::instance();
+       $db = BaseModel::instance();
     //   $db = Model::instance();
 
     //   $query = "SELECT * FROM articles";

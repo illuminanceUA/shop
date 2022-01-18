@@ -10,7 +10,8 @@ class IndexController extends BaseController
 
     protected function inputData()
     {
-        exit();
+
+        exit('Это главная страница!');
     }
 
  }
