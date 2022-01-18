@@ -12,14 +12,18 @@ class IndexController extends BaseController
 {
    protected function inputData(){
 
+       $db = Model::instance();
+       $table = 'teachers';
 
-
-       $db = BaseModel::instance();
-    //   $db = Model::instance();
-
-    //   $query = "SELECT * FROM articles";
-
-     //  $res = $db->query($query);
+       $res = $db->get($table, [
+           'fields' => ['id', 'name'],
+           'where' => ['fio' => 'smirnova', 'name' => 'Masha', 'surname' => 'Sergeevna'],
+           'operand' => ['<>', '='],
+           'condition' => ['AND'],
+           'order' => ['fio', 'name'],
+           'order_direction' => ['ASC', 'DESC'],
+           'limit' => '1'
+       ]);
 
        exit('I am admin panel');
    }

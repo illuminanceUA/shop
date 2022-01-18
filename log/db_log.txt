@@ -2,3 +2,18 @@ Fault: 18-01-2022 16:31:57 - Ошибка подключения к базе д�
 file /var/www/core/base/model/BaseModel.php
 In line 19
 
+Fault: 18-01-2022 16:51:06 - Ошибка в SQL запросе: SELECT * FROM articles1 - 1146 Table 'site.articles1' doesn't exist
+file /var/www/core/base/model/BaseModel.php
+In line 31
+
+Fault: 18-01-2022 16:51:52 - Ошибка в SQL запросе: SELECT name1 FROM articles - 1054 Unknown column 'name1' in 'field list'
+file /var/www/core/base/model/BaseModel.php
+In line 31
+
+Fault: 18-01-2022 17:08:48 - Ошибка в SQL запросе: SELECT id, name FROM product WHERE parent_id = (
+          SELECT id FROM category WHERE product.name = 'iphone 7'
+    
+    ) - 1242 Subquery returns more than 1 row
+file /var/www/core/base/model/BaseModel.php
+In line 31
+
