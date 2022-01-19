@@ -17,3 +17,15 @@ Fault: 18-01-2022 17:08:48 - Ошибка в SQL запросе: SELECT id, name
 file /var/www/core/base/model/BaseModel.php
 In line 31
 
+Fault: 19-01-2022 17:20:21 - Ошибка в SQL запросе: SELECT teachers.id,teachers.name FROM teachers  WHERE teachers.name IN ('masha') AND teachers.surname<>(SELECT name FROM students WHERE id = 1)  ORDER BY 1 DESC,teachers.name DESC 1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 31
+
+Fault: 19-01-2022 17:20:51 - Ошибка в SQL запросе: SELECT teachers.id,teachers.name FROM teachers  WHERE teachers.name IN ('masha') AND teachers.surname<>(SELECT name FROM students WHERE id = 1)  ORDER BY 1 DESC,teachers.name DESC 1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 31
+
+Fault: 19-01-2022 17:30:39 - Ошибка в SQL запросе: SELECT teachers.id,teachers.name FROM teachers  WHERE teachers.name='O'Raily'  ORDER BY teachers.name DESC LIMIT 1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Raily'  ORDER BY teachers.name DESC LIMIT 1' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 31
+

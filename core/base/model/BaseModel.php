@@ -106,16 +106,16 @@ class BaseModel
 
         final public function get($table, $set = []){
 
-            $fields = $this->createFields($table, $set);
+            $fields = $this->createFields($set, $table);
 
-            $order = $this->createOrder($table, $set);
+            $order = $this->createOrder($set, $table);
 
-            $where = $this->createWhere($table, $set);
+            $where = $this->createWhere($set, $table);
 
             if(!$where) $newWhere = true;
                else $newWhere = false;
 
-            $joinArr = $this->createJoin($table, $set, $newWhere);
+            $joinArr = $this->createJoin($set, $table, $newWhere);
 
             $fields .= $joinArr['fields'];
             $join = $joinArr['join'];
@@ -123,7 +123,7 @@ class BaseModel
 
             $fields = rtrim($fields, ',');
 
-            $limit = $set['limit'] ? $set['limit'] : '';
+            $limit = $set['limit'] ? 'LIMIT ' . $set['limit'] : '';
 
             $query = "SELECT $fields FROM $table $join $where $order $limit";
 
@@ -131,7 +131,7 @@ class BaseModel
 
         }
 
-        protected function createFields($table = false, $set) {
+        protected function createFields($set, $table = false) {
            $set['fields'] = (is_array($set['fields']) && !empty($set['fields']))
                                 ? $set['fields'] : ['*'];
 
@@ -148,7 +148,7 @@ class BaseModel
 
         }
 
-        protected function createOrder($table = false, $set) {
+        protected function createOrder($set, $table = false) {
 
             $table = $table ? $table . '.' : '';
 
@@ -164,6 +164,7 @@ class BaseModel
                 $directCount = 0;
 
                 foreach ($set['order'] as $order){
+
                     if($set['order_direction'][$directCount]) {
                         $orderDirection = strtoupper($set['order_direction'][$directCount]);
                         $directCount++;
@@ -179,7 +180,7 @@ class BaseModel
             return $orderBy;
         }
 
-        protected function createWhere($table = false, $set, $instruction = 'WHERE') {
+        protected function createWhere($set, $table = false, $instruction = 'WHERE') {
 
             $table = $table ? $table . '.' : '';
 
@@ -215,7 +216,7 @@ class BaseModel
 
                    if($operand === 'IN' || $operand === 'NOT IN'){
 
-                       if(is_string($item) && strpos($item, 'SELECT')){
+                       if(is_string($item) && strpos($item, 'SELECT') === 0){
                            $inStr = $item;
                        }else{
                             if(is_array($item)) $tempItem = $item;
@@ -224,7 +225,7 @@ class BaseModel
                             $inStr = '';
 
                             foreach ($tempItem as $value){
-                                $inStr .= "'" . trim($value) . "',";
+                                $inStr .= "'" . addslashes(trim($value)) . "',";
                             }
                        }
 
@@ -244,14 +245,14 @@ class BaseModel
                             }
                        }
 
-                       $where .= $table . $key . ' LIKE ' . "'" . $item . "' $condition";
+                       $where .= $table . $key . ' LIKE ' . "'" . addslashes($item) . "' $condition";
 
                    }else{
 
                        if(strpos($item, 'SELECT') === 0){
                            $where .= $table . $key . $operand . '(' . $item . ") $condition";
                        }else{
-                           $where .= $table . $key . $operand . "'" . $item . "' $condition";
+                           $where .= $table . $key . $operand . "'" . addslashes($item) . "' $condition";
                        }
                    }
                 }
@@ -263,7 +264,7 @@ class BaseModel
             return $where;
         }
 
-        protected function createJoin($table, $set, $newWhere = false){
+        protected function createJoin($set, $table, $newWhere = false){
 
           $fields = '';
           $join = '';
@@ -298,7 +299,7 @@ class BaseModel
                               break;
                       }
 
-                      if(!$item['type']) $join .= 'LEFT JOIN';
+                      if(!$item['type']) $join .= 'LEFT JOIN ';
                           else $join .= trim(strtoupper($item['type'])) . ' JOIN ';
 
                       $join .= $key . ' ON ';
@@ -306,7 +307,7 @@ class BaseModel
                       if($item['on']['table']) $join .= $item['on']['table'];
                           else $join .= $joinTable;
 
-                      $join .= '.' . $joinFields[0] . '=' . $key . '.' . $joinFields[0];
+                      $join .= '.' . $joinFields[0] . '=' . $key . '.' . $joinFields[1];
 
                       $joinTable = $key;
 
@@ -320,8 +321,8 @@ class BaseModel
                           $groupCondition = $item['groupCondition'] ? strtoupper($item['groupCondition']) : 'AND';
                       }
 
-                      $fields .= $this->createFields($key, $item);
-                      $where .= $this->createWhere($key, $item, $groupCondition);
+                      $fields .= $this->createFields($item, $key);
+                      $where .= $this->createWhere($item,$key, $groupCondition);
 
                   }
                }
