@@ -73,12 +73,35 @@ class BaseModel
      * @param $table
      * @param array $set
      * 'fields' => ['id', 'name'],
-     * 'where' => ['fio' => 'smirnova', 'name' => 'Masha', 'surname' => 'Sergeevna'],
-     * 'operand' => ['<>', '='],
-     * 'condition' => ['AND'],
-     * 'order' => ['fio', 'name'],
-     * 'order_direction' => ['ASC', 'DESC'],
-     * 'limit' => '1'
+     * 'where' => ['name' => 'masha, olya, sveta', 'surname' => 'Sergeevna', 'fio' => 'Andrey', 'car' => 'Porshe', 'color' => $color ],
+     * 'operand' => ['IN', 'LIKE%', '<>', '=', 'NOT IN'],
+     * 'condition' => ['AND', 'OR'],
+     * 'order' => [1, 'name'],
+     * 'order_direction' => ['DESC'],
+     * 'limit' => '1',
+     *    'join' => [
+     *    [
+     *           'table' => 'join_table1',
+     *           'fields' => ['id as j_id', 'name as j_name'],
+     *           'type' => 'left',
+     *           'where' => ['name' => 'sasha'],
+     *            'operand' => ['='],
+     *            'condition' => ['OR'],
+     *            'on' => ['id', 'parent_id'],
+     *            'group_condition' => 'AND'
+     *         ],
+     *            'join_table2' => [
+     *                 'fields' => ['id as j2_id', 'name as j2_name'],
+     *                 'type' => 'left',
+     *                 'where' => ['name' => 'sasha'],
+     *                 'operand' => ['='],
+     *                 'condition' => ['AND'],
+     *                 'on' => [
+     *                 'table' => 'teachers',
+     *                 'fields' => ['id', 'parent_id']
+     *                      ]
+     *                ]
+     *            ]
      */
 
         final public function get($table, $set = []){
@@ -89,7 +112,10 @@ class BaseModel
 
             $where = $this->createWhere($table, $set);
 
-            $joinArr = $this->createJoin($table, $set);
+            if(!$where) $newWhere = true;
+               else $newWhere = false;
+
+            $joinArr = $this->createJoin($table, $set, $newWhere);
 
             $fields .= $joinArr['fields'];
             $join = $joinArr['join'];
@@ -144,8 +170,8 @@ class BaseModel
                     }else{
                         $orderDirection = strtoupper($set['order_direction'][$directCount - 1]);
                     }
-
-                    $orderBy .= $table . $order . ' ' . $orderDirection . ',';
+                   if(is_int($order)) $orderBy .= $order . ' ' . $orderDirection . ',';
+                      else  $orderBy .= $table . $order . ' ' . $orderDirection . ',';
                 }
                 $orderBy = rtrim($orderBy, ',');
             }
@@ -235,6 +261,74 @@ class BaseModel
             }
 
             return $where;
+        }
+
+        protected function createJoin($table, $set, $newWhere = false){
+
+          $fields = '';
+          $join = '';
+          $where = '';
+
+          if($set['join']){
+               $joinTable = $table;
+
+              foreach ($set['join'] as $key => $item) {
+
+                  if(is_int($key)){
+                      if(!$item['table']) continue;
+                        else $key = $item['table'];
+                  }
+                  if($join) $join .= ' ';
+
+                  if($item['on']) {
+                      $joinFields = [];
+
+                      switch (2){
+
+                          case count($item['on']['fields']):
+                              $joinFields = $item['on']['fields'];
+                              break;
+
+                          case  count($item['on']):
+                              $joinFields = $item['on'];
+                              break;
+
+                          default:
+                              continue 2;
+                              break;
+                      }
+
+                      if(!$item['type']) $join .= 'LEFT JOIN';
+                          else $join .= trim(strtoupper($item['type'])) . ' JOIN ';
+
+                      $join .= $key . ' ON ';
+
+                      if($item['on']['table']) $join .= $item['on']['table'];
+                          else $join .= $joinTable;
+
+                      $join .= '.' . $joinFields[0] . '=' . $key . '.' . $joinFields[0];
+
+                      $joinTable = $key;
+
+                      if($newWhere){
+                          if($item['where']){
+                              $newWhere = false;
+                          }
+
+                          $groupCondition = 'WHERE';
+                      }else{
+                          $groupCondition = $item['groupCondition'] ? strtoupper($item['groupCondition']) : 'AND';
+                      }
+
+                      $fields .= $this->createFields($key, $item);
+                      $where .= $this->createWhere($key, $item, $groupCondition);
+
+                  }
+               }
+          }
+
+          return compact('fields', 'join', 'where');
+
         }
 
 }
