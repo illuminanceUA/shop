@@ -89,15 +89,13 @@ class BaseModel
 
             $where = $this->createWhere($table, $set);
 
-            $join_arr = $this->createJoin($table, $set);
+            $joinArr = $this->createJoin($table, $set);
 
-            $fields .= $join_arr['fields'];
-            $join = $join_arr['join'];
-            $where .= $join_arr['where'];
+            $fields .= $joinArr['fields'];
+            $join = $joinArr['join'];
+            $where .= $joinArr['where'];
 
             $fields = rtrim($fields, ',');
-
-
 
             $limit = $set['limit'] ? $set['limit'] : '';
 
@@ -153,6 +151,63 @@ class BaseModel
             }
 
             return $orderBy;
+        }
+
+        protected function createWhere($table = false, $set, $instruction = 'WHERE') {
+
+            $table = $table ? $table . '.' : '';
+
+            $where = '';
+
+            if(is_array($set['where']) && !empty($set['where'])){
+
+                $set['operand'] = (is_array($set['operand']) && !empty($set['operand'])) ? $set['operand'] : ['='];
+                $set['condition'] = (is_array($set['condition']) && !empty($set['condition'])) ? $set['condition'] : ['AND'];
+
+                $where = $instruction;
+
+                $operandCount = 0;
+                $conditionCount = 0;
+
+                foreach ($set['where'] as $key => $item){
+
+                    $where .= ' ';
+
+                    if($set['operand'][$operandCount]){
+                        $operand = $set['operand'][$operandCount];
+                        $operandCount++;
+                    }else{
+                        $operand = $set['operand'][$operandCount - 1];
+                    }
+
+                    if($set['condition'][$conditionCount]){
+                        $condition = $set['condition'][$conditionCount];
+                        $conditionCount++;
+                    }else{
+                        $condition = $set['condition'][$conditionCount - 1];
+                    }
+
+                   if($operand === 'IN' || $operand === 'NOT IN'){
+
+                       if(is_string($item) && strpos($item, 'SELECT')){
+                           $inStr = $item;
+                       }else{
+                            if(is_array($item)) $tempItem = $item;
+                            else $tempItem = explode(',', $item);
+
+                            $inStr = '';
+
+                            foreach ($tempItem as $value){
+                                $inStr .= "'" . trim($value) . "',";
+                            }
+                       }
+
+                       $where .= $table . $key . ' ' . $operand . ' (' . trim($inStr, ',') . ') ' . $condition;
+                         exit();
+                   }
+                }
+
+            }
         }
 
 }
