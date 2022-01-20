@@ -183,17 +183,17 @@ class BaseModel extends BaseModelMethods
 
             if(!$set['all_rows']){
 
-                if(!$set['where']){
+                if($set['where']){
                     $where = $this->createWhere($set);
                 }else{
 
                     $columns = $this->showColumns($table);
 
-                    if($columns) return false;
+                    if(!$columns) return false;
 
                     if($columns['id_row'] && $set['fields'][$columns['id_row']]){
                         $where = 'WHERE ' . $columns['id_row'] . '=' . $set['fields'][$columns['id_row']];
-                        unset( $set['fields'][$columns['id_row']]);
+                        unset($set['fields'][$columns['id_row']]);
                     }
 
                 }

@@ -13,12 +13,16 @@ class IndexController extends BaseController
    protected function inputData(){
 
        $db = Model::instance();
+
        $table = 'teachers';
 
-       $files['gallery_img'] = ["red''.jpg", 'blue.jpg', 'black.jpg'];
-       $files['img'] = 'main_img.jpg';
+      $files = [];
 
-       $res = $db->showColumns($table);
+       $_POST['id'] = 8;
+       $_POST['name'] = '';
+       $_POST['content'] = "<p>New`' book</p>";
+
+       $res = $db->edit($table);
 
        exit('id =' . $res['id'] . ' Name = ' . $res['name']);
    }

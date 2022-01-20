@@ -7,6 +7,8 @@ namespace core\base\model;
 abstract class BaseModelMethods
 {
 
+    protected  $sqlFunction = ['NOW()'];
+
     protected function createFields($set, $table = false) {
         $set['fields'] = (is_array($set['fields']) && !empty($set['fields']))
             ? $set['fields'] : ['*'];
@@ -214,15 +216,13 @@ abstract class BaseModelMethods
 
         if($fields){
 
-            $sqlFunctions = ['NOW()'];
-
             foreach ($fields as $row => $value) {
 
                 if($except && in_array($row, $except)) continue;
 
                 $insertArr['fields'] .= $row . ',';
 
-                if(in_array($value, $sqlFunctions)){
+                if(in_array($value, $this->sqlFunction)){
                     $insertArr['values'] .= $value . ',';
                 }else{
                     $insertArr['values'] .= "'" . addslashes($value) . "',";
@@ -241,11 +241,50 @@ abstract class BaseModelMethods
                 if(is_array($file)) $insertArr['values'] .= "'" . addslashes(json_encode($file)) . "',";
                       else $insertArr['values'] .= "'" . addslashes($file) . "',";
             }
+
         }
 
           foreach ($insertArr as $key => $arr) $insertArr[$key] = rtrim($arr, ',');
 
           return $insertArr;
+    }
+
+    protected function createUpdate($fields, $files, $except){
+
+        $update = '';
+
+        if($fields){
+
+            foreach ($fields as $row => $value){
+
+                if($except && in_array($row, $except)) continue;
+
+                $update .= $row . '=';
+
+                if(in_array($value, $this->sqlFunction)){
+                    $update .= $value . ',';
+                }else{
+                    $update .= "'" . addslashes($value) . "',";
+                }
+
+            }
+
+        }
+
+        if($files){
+
+            foreach ($files as $row => $file){
+
+                $update .= $row . '=';
+
+                if(is_array($file)) $update .= "'" . addslashes(json_encode($file)) . "',";
+                   else $update .= "'" . addslashes($file) . "',";
+            }
+
+        }
+
+        return rtrim($update, ',');
+
     }
 
 }
