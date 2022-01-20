@@ -238,10 +238,20 @@ abstract class BaseModelMethods
 
         if($files){
 
-            foreach ($files as $row => $value){
+            foreach ($files as $row => $file){
 
+                $insertArr['fields'] .= $row . ',';
+
+                if(is_array($file)) $insertArr['values'] .= "'" . addslashes(json_encode($file)) . "',";
+                      else $insertArr['values'] .= "'" . addslashes($file) . "',";
             }
         }
+
+         if($insertArr){
+             foreach ($insertArr as $key => $arr) $insertArr[$key] = rtrim($arr, ',');
+         }
+
+          return $insertArr;
     }
 
 }

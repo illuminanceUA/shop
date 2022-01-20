@@ -29,3 +29,15 @@ Fault: 19-01-2022 17:30:39 - Ошибка в SQL запросе: SELECT teachers
 file /var/www/core/base/model/BaseModel.php
 In line 31
 
+Fault: 20-01-2022 7:30:55 - Ошибка в SQL запросе: INSERT INTO teachers (name,content,gallery_img,img,) VALUES ('Olga','Hello','[\"red\'\'.jpg\",\"blue.jpg\",\"black.jpg\"]','main_img.jpg',)) - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') VALUES ('Olga','Hello','[\"red\'\'.jpg\",\"blue.jpg\",\"black.jpg\"]','main_im' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 39
+
+Fault: 20-01-2022 7:42:23 - Ошибка в SQL запросе: INSERT INTO teachers (name,content,gallery_img,img) VALUES ('Olga','Hello','[\"red.jpg\",\"blue.jpg\",\"black.jpg\"]','main_img.jpg')) - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 39
+
+Fault: 20-01-2022 7:46:16 - Ошибка в SQL запросе: INSERT INTO teachers (content,gallery_img,img) VALUES ('Hello','[\"red\'\'.jpg\",\"blue.jpg\",\"black.jpg\"]','main_img.jpg') - 1364 Field 'name' doesn't have a default value
+file /var/www/core/base/model/BaseModel.php
+In line 39
+
