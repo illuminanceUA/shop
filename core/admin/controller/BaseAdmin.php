@@ -88,7 +88,12 @@ abstract class BaseAdmin extends BaseController
             }
 
             if($arr['fields']){
-                $fields = Settings::instance()->arrayMergeRecursive($fields, $arr['fields']);
+                if(is_array($arr['fields'])) {
+                    $fields = Settings::instance()->arrayMergeRecursive($fields, $arr['fields']);
+                }else{
+                    $fields[] = $arr['fields'];
+                }
+
             }
 
             if($this->columns['parent_id']){
@@ -105,10 +110,20 @@ abstract class BaseAdmin extends BaseController
                }
 
             if($arr['order']){
-                $order = Settings::instance()->arrayMergeRecursive($order, $arr['order']);
+                if(is_array($arr['order'])){
+                    $order = Settings::instance()->arrayMergeRecursive($order, $arr['order']);
+                }else{
+                    $order[] =  $arr['order'];
+                }
+
             }
             if($arr['order_direction']){
-                $orderDirection = Settings::instance()->arrayMergeRecursive($orderDirection, $arr['order_direction']);
+                if(is_array($arr['order_direction'])){
+                    $orderDirection = Settings::instance()->arrayMergeRecursive($orderDirection, $arr['order_direction']);
+                }else{
+                    $orderDirection[] =  $arr['order_direction'];
+                }
+
             }
 
         }else{
@@ -125,8 +140,23 @@ abstract class BaseAdmin extends BaseController
             'order_direction' => $orderDirection
         ]);
 
-        exit();
+    }
 
+    protected function expansion($args = []){
 
+        $filename = explode('_', $this->table);
+        $className = '';
+
+        foreach ($filename as $item) $className .= ucfirst($item);
+
+        $class = Settings::get('expansion') . $className . 'Expansion';
+
+        if(is_readable($_SERVER['DOCUMENT_ROOT'] . PATH . $class . '.php')){
+            $class = str_replace('/', '\\', $class);
+
+            $exp = $class::instance();
+
+            $res = $exp->expansion($args);
+        }
     }
 }

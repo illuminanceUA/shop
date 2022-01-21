@@ -46,7 +46,7 @@ class Settings
       'textarea' => ['content', 'keywords']
     ];
 
-    private $lala = 'laladsa';
+    private $expansion = 'core/admin/expansion/';
 
     static public function get($property) {
         return self::instance()->$property;
