@@ -16,13 +16,16 @@ class IndexController extends BaseController
 
        $table = 'teachers';
 
-      $files = [];
 
-       $_POST['id'] = 8;
-       $_POST['name'] = '';
-       $_POST['content'] = "<p>New`' book</p>";
-
-       $res = $db->edit($table);
+       $res = $db->delete($table, [
+           'where' => ['id' => 20],
+           'join' => [
+               [
+                   'table' => 'students',
+                   'on' => ['student_id', 'id']
+                ]
+           ]
+       ]);
 
        exit('id =' . $res['id'] . ' Name = ' . $res['name']);
    }

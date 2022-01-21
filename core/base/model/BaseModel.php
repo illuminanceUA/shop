@@ -98,7 +98,7 @@ class BaseModel extends BaseModelMethods
      *            'on' => ['id', 'parent_id'],
      *            'group_condition' => 'AND'
      *         ],
-     *            'join_table2' => [
+     *  'join_table1' => [
      *                 'fields' => ['id as j2_id', 'name as j2_name'],
      *                 'type' => 'left',
      *                 'where' => ['name' => 'sasha'],
@@ -204,6 +204,79 @@ class BaseModel extends BaseModelMethods
             $query = "UPDATE $table SET $update $where";
 
             return $this->query($query, 'u');
+
+        }
+
+        /**
+         * @param $table
+         * @param array $set
+         * 'fields' => ['id', 'name'],
+         * 'where' => ['name' => 'masha, olya, sveta', 'surname' => 'Sergeevna', 'fio' => 'Andrey', 'car' => 'Porshe', 'color' => $color ],
+         * 'operand' => ['IN', 'LIKE%', '<>', '=', 'NOT IN'],
+         * 'condition' => ['AND', 'OR'],
+         *    'join' => [
+         *    [
+         *           'table' => 'join_table1',
+         *           'fields' => ['id as j_id', 'name as j_name'],
+         *           'type' => 'left',
+         *           'where' => ['name' => 'sasha'],
+         *            'operand' => ['='],
+         *            'condition' => ['OR'],
+         *            'on' => ['id', 'parent_id'],
+         *            'group_condition' => 'AND'
+         *         ],
+         *    'join_table2' => [
+         *                 'fields' => ['id as j2_id', 'name as j2_name'],
+         *                 'type' => 'left',
+         *                 'where' => ['name' => 'sasha'],
+         *                 'operand' => ['='],
+         *                 'condition' => ['AND'],
+         *                 'on' => [
+         *                 'table' => 'teachers',
+         *                 'fields' => ['id', 'parent_id']
+         *                      ]
+         *                ]
+         *            ]
+         */
+
+        public function delete($table, $set){
+
+            $table = trim($table);
+
+            $where = $this->createWhere($set, $table);
+
+            $columns = $this->showColumns($table);
+
+            if(!$columns) return false;
+
+            if(is_array($set['fields']) && !empty($set['fields'])){
+
+                if($columns['id_row']){
+                   $key = array_search($columns['id_row'], $set['fields']);
+                   if($key !== false) unset($set['fields'][$key]);
+                }
+
+                $fields = [];
+
+                foreach ($set['fields'] as $field){
+                    $fields[$field] = $columns[$field]['Default'];
+                }
+
+                $update = $this->createUpdate($fields, false, false);
+
+                $query = "UPDATE $table SET $update $where";
+
+            }else{
+
+                $joinArray = $this->createJoin($set, $table);
+                $join = $joinArray['join'];
+                $joinTables = $joinArray['tables'];
+
+                $query = 'DELETE ' . $table . $joinTables . ' FROM ' . $table . ' ' . $join . ' ' . $where;
+
+            }
+
+           return $this->query($query, 'u');
 
         }
 

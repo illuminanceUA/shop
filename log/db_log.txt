@@ -41,3 +41,19 @@ Fault: 20-01-2022 7:46:16 - Ошибка в SQL запросе: INSERT INTO teac
 file /var/www/core/base/model/BaseModel.php
 In line 39
 
+Fault: 21-01-2022 9:33:36 - Ошибка в SQL запросе: UPDATE teachers SET 0='id',1='name',2='img' WHERE id='1'  - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '0='id',1='name',2='img' WHERE id='1'' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 39
+
+Fault: 21-01-2022 9:33:49 - Ошибка в SQL запросе: UPDATE teachers SET 0='id',1='name',2='img' WHERE id='1'  - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '0='id',1='name',2='img' WHERE id='1'' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 39
+
+Fault: 21-01-2022 9:34:14 - Ошибка в SQL запросе: UPDATE teachers SET 0='id',1='name',2='img' WHERE id='1'  - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '0='id',1='name',2='img' WHERE id='1'' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 39
+
+Fault: 21-01-2022 9:46:51 - Ошибка в SQL запросе: UPDATE teachers SET name=,img= WHERE teachers.id='1'  - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'img= WHERE teachers.id='1'' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 39
+
