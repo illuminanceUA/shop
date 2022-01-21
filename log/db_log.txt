@@ -57,3 +57,7 @@ Fault: 21-01-2022 9:46:51 - Ошибка в SQL запросе: UPDATE teachers 
 file /var/www/core/base/model/BaseModel.php
 In line 39
 
+Fault: 21-01-2022 11:27:53 - Ошибка в SQL запросе: SHOW COLUMNS FROM  - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 39
+
