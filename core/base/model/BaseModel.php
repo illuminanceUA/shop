@@ -2,16 +2,14 @@
 
 namespace core\base\model;
 
-use core\base\controller\Singleton;
 use core\base\exceptions\DbException;
 
-class BaseModel extends BaseModelMethods
+abstract class BaseModel extends BaseModelMethods
 {
-    use Singleton;
 
     protected $db;
 
-    private function __construct() // осуществляет подключение к базе данных
+    protected function connect() // осуществляет подключение к базе данных
     {
         $this->db = new \mysqli(HOST, USER, PASS, DB_NAME);
 

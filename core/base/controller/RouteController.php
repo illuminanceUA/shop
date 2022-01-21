@@ -15,13 +15,15 @@ class RouteController extends BaseController // RouteController отвечает
     {
        $address = $_SERVER['REQUEST_URI'];
 
-       if(strrpos($address, '/') === strlen($address) - 1 && strrpos($address, '/') !== 0) {
+        $path = substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php'));
+
+     if($path === PATH) {
+
+       if(strrpos($address, '/') === strlen($address) - 1 &&
+           strrpos($address, '/') !== strlen(PATH) - 1) {
+       //    strrpos($address, '/') !== 0) {
            $this->redirect(rtrim($address, '/'), 301);
        }
-
-       $path = substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php'));
-
-       if($path === PATH) {
 
            $this->routes = Settings::get('routes');
 
