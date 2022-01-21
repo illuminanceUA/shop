@@ -25,6 +25,7 @@ class ShopSettings
         'textarea' => ['goods_content']
     ];
 
+
     static public function get($property) {
         return self::getInstance()->$property;
     }

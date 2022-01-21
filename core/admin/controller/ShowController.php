@@ -3,8 +3,8 @@
 
 namespace core\admin\controller;
 
-
 use core\base\settings\Settings;
+use core\base\settings\ShopSettings;
 
 class ShowController extends BaseAdmin
 {
@@ -44,7 +44,7 @@ class ShowController extends BaseAdmin
                 }
                 if(!$fields['img'] && strpos($key, 'img') === 0){
                     $fields['img'] = $key . ' as img';
-                };
+                }
             }
         }
 

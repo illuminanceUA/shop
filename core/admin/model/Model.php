@@ -9,8 +9,5 @@ class Model extends BaseModel
 {
     use Singleton;
 
-    public function test(){
-
-    }
 
 }
