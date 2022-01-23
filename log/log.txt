@@ -998,3 +998,103 @@ Fault: 23-01-2022 9:38:03 - Class core\user\controller\Favicon.icoController doe
 file /var/www/core/base/controller/BaseController.php
 In line 42
 
+Fault: 23-01-2022 9:48:30 - Не верное имя файла для подключения - core/user/controller/TemplateController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 9:48:30 - Не верное имя файла для подключения - core/user/controller/TemplateController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 9:48:31 - Не верное имя файла для подключения - core/user/controller/TemplateController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 9:48:31 - Не верное имя файла для подключения - core/user/controller/TemplateController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 9:48:31 - Не верное имя файла для подключения - core/user/controller/TemplateController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 9:48:31 - Не верное имя файла для подключения - core/user/controller/ImagesController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 9:48:31 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 42
+
+Fault: 23-01-2022 10:01:54 - Не верное имя файла для подключения - core/user/controller/ImagesController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 10:01:54 - Не верное имя файла для подключения - core/user/controller/TemplateController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 10:01:54 - Не верное имя файла для подключения - core/user/controller/TemplateController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 10:01:54 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 42
+
+Fault: 23-01-2022 10:11:49 - Не верное имя файла для подключения - core/user/controller/TemplateController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 10:11:49 - Не верное имя файла для подключения - core/user/controller/UserfilesController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 10:11:49 - Не верное имя файла для подключения - core/user/controller/UserfilesController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 10:11:49 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 42
+
+Fault: 23-01-2022 10:13:30 - Не верное имя файла для подключения - core/user/controller/TemplateController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 10:13:30 - Не верное имя файла для подключения - core/user/controller/UserfilesController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 10:13:30 - Не верное имя файла для подключения - core/user/controller/UserfilesController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 10:13:30 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 42
+
+Fault: 23-01-2022 10:14:26 - Не верное имя файла для подключения - core/user/controller/TemplateController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 10:14:26 - Не верное имя файла для подключения - core/user/controller/UserfilesController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 10:14:26 - Не верное имя файла для подключения - core/user/controller/UserfilesController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 10:14:26 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 42
+
+Fault: 23-01-2022 10:14:33 - Не верное имя файла для подключения - core/user/controller/TemplateController
+file /var/www/core/base/settings/internal_settings.php
+In line 34
+
+Fault: 23-01-2022 10:14:33 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 42
+
