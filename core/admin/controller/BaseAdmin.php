@@ -27,6 +27,7 @@ abstract class BaseAdmin extends BaseController
 
     protected $templateArr;
     protected $formTemplates;
+    protected $noDelete;
 
     protected function inputData() {
 
@@ -136,7 +137,7 @@ abstract class BaseAdmin extends BaseController
 
     protected function createOutputData($settings = false){
 
-       if(!$settings)  $settings = Settings::instance();
+       if(!$settings) $settings = Settings::instance();
 
        $blocks = $settings::get('blockNeedle');
        $this->translate = $settings::get('translate');

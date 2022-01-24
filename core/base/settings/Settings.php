@@ -51,8 +51,11 @@ class Settings
     ];
 
     private $templateArr = [
-      'text' => ['name', 'phone', 'address'],
-      'textarea' => ['content', 'keywords']
+      'text' => ['name'],
+      'textarea' => ['keywords', 'content'],
+      'radio' => ['visible'],
+      'select' => ['menu_position', 'parent_id'],
+      'img' => ['img']
     ];
 
     private $translate = [
@@ -71,7 +74,7 @@ class Settings
 
     private $blockNeedle = [
         'vg-rows' => [],
-        'vg-img' => ['id'],
+        'vg-img' => ['img'],
         'vg-content' => ['content']
     ];
 
