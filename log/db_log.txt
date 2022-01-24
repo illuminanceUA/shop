@@ -117,3 +117,51 @@ Fault: 24-01-2022 12:05:35 - Ошибка в SQL запросе: SELECT teachers
 file /var/www/core/base/model/BaseModel.php
 In line 37
 
+Fault: 24-01-2022 14:12:40 - Ошибка в SQL запросе: SELECT teachers.id as id,teachers.name,teachers.content,teachers.parent_id FROM teachers   ORDER BY teachers.parent_id ASC,teachers.menu_position ASC  - 1054 Unknown column 'teachers.content' in 'field list'
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 14:13:49 - Ошибка в SQL запросе: SHOW COLUMNS FROM teachers?page=1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?page=1' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 14:14:15 - Ошибка в SQL запросе: SHOW COLUMNS FROM teachers?page=1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?page=1' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 14:14:59 - Ошибка в SQL запросе: SHOW COLUMNS FROM teachers?page=1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?page=1' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 15:47:35 - Ошибка в SQL запросе: INSERT INTO teachers (()) VALUES (('Lena','2.jpg')) - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '()) VALUES (('Lena','2.jpg'))' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 15:58:28 - Ошибка в SQL запросе: INSERT INTO teachers ((name,img)) VALUES (('Lena','2.jpg')) - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(name,img)) VALUES (('Lena','2.jpg'))' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 16:00:50 - Ошибка в SQL запросе: INSERT INTO teachers ((name,img)) VALUES (('Lena','2.jpg'),('Natalia','3.jpg')) - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(name,img)) VALUES (('Lena','2.jpg'),('Natalia','3.jpg'))' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 16:22:16 - Ошибка в SQL запросе: INSERT INTO teachers ((name,img)) VALUES (('Lena','2.jpg')) - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(name,img)) VALUES (('Lena','2.jpg'))' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 16:22:19 - Ошибка в SQL запросе: INSERT INTO teachers ((name,img)) VALUES (('Lena','2.jpg')) - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(name,img)) VALUES (('Lena','2.jpg'))' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 16:27:50 - Ошибка в SQL запросе: INSERT INTO teachers ((name,img)) VALUES (('Lena','2.jpg')) - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(name,img)) VALUES (('Lena','2.jpg'))' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 16:34:27 - Ошибка в SQL запросе: INSERT INTO teachers (name,img,menu_position) VALUES ('Lena','2.jpg','1'),('Natalia','3.jpg',NULL,NULL) - 1136 Column count doesn't match value count at row 2
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 16:37:32 - Ошибка в SQL запросе: INSERT INTO teachers (name,menu_position) VALUES ('Lena1111','1','1.jpg') - 1136 Column count doesn't match value count at row 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+

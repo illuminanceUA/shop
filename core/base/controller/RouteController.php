@@ -13,7 +13,12 @@ class RouteController extends BaseController // RouteController отвечает
 
     private function __construct()
     {
+
        $address = $_SERVER['REQUEST_URI'];
+
+       if($_SERVER['QUERY_STRING']){
+           $address = substr($address, 0, strpos($address, $_SERVER['QUERY_STRING']) - 1);
+       }
 
         $path = substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php'));
 
@@ -21,7 +26,7 @@ class RouteController extends BaseController // RouteController отвечает
 
        if(strrpos($address, '/') === strlen($address) - 1 &&
            strrpos($address, '/') !== strlen(PATH) - 1) {
-       //    strrpos($address, '/') !== 0) {
+
            $this->redirect(rtrim($address, '/'), 301);
        }
 

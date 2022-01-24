@@ -149,7 +149,7 @@ abstract class BaseModel extends BaseModelMethods
      * @return mixed
      */
 
-        final public function add($table, array $set = []){
+        final public function add($table, $set = []){  // Метод добавления данных в таблицу
 
            $set['fields'] = (is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : $_POST;
            $set['files'] = (is_array($set['files']) && !empty($set['files'])) ? $set['files'] : false;
@@ -161,13 +161,8 @@ abstract class BaseModel extends BaseModelMethods
 
            $insertArr = $this->createInsert($set['fields'], $set['files'], $set['except']);
 
-           if($insertArr){
-               $query = "INSERT INTO $table ({$insertArr['fields']}) VALUES ({$insertArr['values']})";
-
-               return $this->query($query, 'c', $set['return_id']);
-           }
-
-           return false;
+           $query = "INSERT INTO $table {$insertArr['fields']} VALUES {$insertArr['values']}";
+           return $this->query($query, 'c', $set['return_id']);
 
         }
 
