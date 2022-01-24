@@ -61,3 +61,59 @@ Fault: 21-01-2022 11:27:53 - Ошибка в SQL запросе: SHOW COLUMNS FR
 file /var/www/core/base/model/BaseModel.php
 In line 39
 
+Fault: 24-01-2022 11:32:55 - Ошибка в SQL запросе: SELECT teachers.COUNT(*) as count FROM teachers     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as count FROM teachers' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 11:33:50 - Ошибка в SQL запросе: SELECT teachers.COUNT(*) as count FROM teachers     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as count FROM teachers' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 11:40:31 - Ошибка в SQL запросе: SELECT teachers.COUNT(*) as count FROM teachers     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as count FROM teachers' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 11:45:04 - Ошибка в SQL запросе: SELECT teachers.COUNT(*) as count FROM teachers     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as count FROM teachers' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 11:48:54 - Ошибка в SQL запросе: SELECT teachers.COUNT(*) as count FROM teachers     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as count FROM teachers' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 11:49:29 - Ошибка в SQL запросе: SELECT teachers.COUNT(*) as count FROM teachers     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as count FROM teachers' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 11:49:35 - Ошибка в SQL запросе: SELECT teachers.COUNT(*) as count FROM teachers     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as count FROM teachers' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 11:51:18 - Ошибка в SQL запросе: SELECT teachers.COUNT(*) as count FROM teachers     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as count FROM teachers' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 11:52:07 - Ошибка в SQL запросе: SELECT teachers.COUNT(*) as count FROM teachers     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as count FROM teachers' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 11:58:40 - Ошибка в SQL запросе: SHOW COLUMNS FROM teachers - 1146 Table 'site.teachers' doesn't exist
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 11:59:01 - Ошибка в SQL запросе: SHOW COLUMNS FROM teachers - 1146 Table 'site.teachers' doesn't exist
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 12:00:29 - Ошибка в SQL запросе: SELECT teachers.COUNT(*) as count FROM teachers     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as count FROM teachers' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 12:03:10 - Ошибка в SQL запросе: SELECT teachers.COUNT(*) as count FROM teachers     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as count FROM teachers' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
+Fault: 24-01-2022 12:05:35 - Ошибка в SQL запросе: SELECT teachers.COUNT(*) as count FROM teachers     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as count FROM teachers' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
