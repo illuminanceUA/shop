@@ -1,5 +1,7 @@
 php_flag magic_quotes Off  # экранирование строки (функция волшебных кавычек)
 
+
+php_value upload_max_filesize 100M
 AddDefaultCharset utf-8 # Кодировка
 
 DirectoryIndex index.php # входной файл index.php
