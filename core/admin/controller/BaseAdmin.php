@@ -22,6 +22,8 @@ abstract class BaseAdmin extends BaseController
     protected $menu;
     protected $title;
 
+    protected $messages;
+
     protected $translate;
     protected $blocks = [];
 
@@ -41,6 +43,8 @@ abstract class BaseAdmin extends BaseController
 
         if(!$this->templateArr) $this->templateArr = Settings::get('templateArr');
         if(!$this->formTemplates) $this->formTemplates = Settings::get('formTemplates');
+
+        if(!$this->messages) $this->messages = include $_SERVER['DOCUMENT_ROOT'] . PATH . Settings::get('messages') . 'informationMessages.php';
 
         $this->sendNoCacheHeaders();
 
@@ -211,6 +215,38 @@ abstract class BaseAdmin extends BaseController
 
     }
 
+    protected function addSessionData($arr = []){
+        if(!$arr) $arr = $_POST;
+
+        foreach ($arr as $key => $item){
+            $_SESSION['res'][$key] = $item;
+        }
+
+        $this->redirect();
+
+    }
+
+    protected function countChar($str, $counter, $answer, $arr){
+
+        if(mb_strlen($str) > $counter){
+
+            $strRes = mb_str_replace('$1', $answer, $this->messages['count']);
+            $strRes = mb_str_replace('$2', $counter, $strRes);
+
+            $_SESSION['res']['answer'] = '<div class="error">' . $strRes . '</div>';
+            $this->addSessionData($arr);
+        }
+
+    }
+
+    protected function emptyFields($str, $answer, $arr = []){
+
+        if(empty($str)){
+            $_SESSION['res']['answer'] = '<div class="error">' . $this->messages['empty']. ' ' . $answer . '</div>';
+            $this->addSessionData($arr);
+        }
+    }
+
     protected function clearPostFields($settings, &$arr = []){
         if(!$arr) $arr = &$_POST;
         if(!$settings) $settings = Settings::instance();
@@ -249,13 +285,13 @@ abstract class BaseAdmin extends BaseController
                             }
                         }
 
-                        if($validate[$key]['empty']) $this->emptyFields($item, $answer);
+                        if($validate[$key]['empty']) $this->emptyFields($item, $answer, $arr);
 
                         if($validate[$key]['trim']) $arr[$key] = trim($item);
 
                         if($validate[$key]['int']) $arr[$key] = $this->clearNum($item);
 
-                        if($validate[$key]['count']) $this->countChar($item, $validate[$key]['count'], $answer);
+                        if($validate[$key]['count']) $this->countChar($item, $validate[$key]['count'], $answer, $arr);
 
                     }
 
