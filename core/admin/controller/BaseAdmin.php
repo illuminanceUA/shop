@@ -22,6 +22,8 @@ abstract class BaseAdmin extends BaseController
     protected $menu;
     protected $title;
 
+    protected $fileArray;
+
     protected $messages;
 
     protected $translate;
@@ -303,7 +305,95 @@ abstract class BaseAdmin extends BaseController
 
     }
 
-    protected function editData(){
+    protected function editData($returnId = false){
+
+        $id = false;
+        $method = 'add';
+
+
+        if($_POST[$this->columns['id_row']]){
+            $id = is_numeric($_POST[$this->columns['id_row']]) ?
+                $this->clearNum($_POST[$this->columns['id_row']]):
+                $this->clearStr($_POST[$this->columns['id_row']]);
+
+            if($id){
+                $where = [$this->columns['id_row'] => $id];
+                $method = 'edit';
+            }
+        }
+
+        foreach ($this->columns as $key => $item){
+
+            if($key === 'id_row') continue;
+
+            if($item['Type'] === 'date' || $item['Type'] === 'datetime'){
+               !$_POST[$key] && $_POST[$key] = 'NOW()';
+            }
+        }
+
+        $this->createFile();
+
+        $this->createAlias($id);
+
+        $this->updateMenuPosition();
+
+        $except = $this->checkExceptFields();
+
+        $resId = $this->model->$method($this->table, [
+            'files' => $this->fileArray,
+            'where' => $where,
+            'returnId' => true,
+            'except' => $except
+        ]);
+
+        if(!$id && $method === 'add'){
+            $_POST[$this->columns['id_row']] = $resId;
+            $answerSuccess = $this->messages['addSuccess'];
+            $answerFail = $this->messages['addFail'];
+        }else{
+            $answerSuccess = $this->messages['editSuccess'];
+            $answerFail = $this->messages['editFail'];
+        }
+
+        $this->expansion(get_defined_vars());
+
+        $result = $this->checkAlias($_POST[$this->columns['id_row']]);
+
+        if($resId){
+
+            $_SESSION['res']['answer'] = '<div class="success">' . $answerSuccess . '</div>';
+
+            if(!$returnId) $this->redirect();
+
+            return $_POST[$this->columns['id_row']];
+
+        }else{
+
+            $_SESSION['res']['answer'] = '<div class="error">' . $answerFail . '</div>';
+
+            if(!$returnId) $this->redirect();
+
+        }
+
+    }
+
+    protected function checkExceptFields(){
+
+    }
+
+    protected function createFile(){
+
+    }
+
+    protected function updateMenuPosition(){
+
+    }
+
+    protected function createAlias($id = false){
+
+    }
+
+    protected function checkAlias($id){
 
     }
 }
