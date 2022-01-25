@@ -14,6 +14,12 @@ use core\base\exceptions\RouteException;
 use core\base\controller\RouteController;
 use core\base\exceptions\DbException;
 
+
+$s = \core\base\settings\Settings::instance();
+$s1 = \core\base\settings\ShopSettings::instance();
+
+exit();
+
 try {
    RouteController::instance()->route();
 }
