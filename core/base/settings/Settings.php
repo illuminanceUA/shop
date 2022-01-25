@@ -55,7 +55,8 @@ class Settings
       'textarea' => ['keywords', 'content'],
       'radio' => ['visible'],
       'select' => ['menu_position', 'parent_id'],
-      'img' => ['img']
+      'img' => ['img'],
+      'gallery_img' => ['gallery_img']
     ];
 
     private $translate = [
@@ -69,7 +70,7 @@ class Settings
 
     private $rootItems = [
         'name' => 'Корневая',
-        'tables' => ['teachers', 'articles']
+        'tables' => ['articles']
     ];
 
     private $blockNeedle = [
