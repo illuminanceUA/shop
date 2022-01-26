@@ -15,8 +15,8 @@ class CreateSiteMapController extends BaseAdmin
     protected $fileArr = ['jpg', 'png', 'jpeg', 'gif', 'xls', 'xlsx', 'pdf', 'mp4', 'mpeg', 'avi', 'mp3', 'move'];
 
     protected $filterArr = [
-        'url' => [],
-        'get' => []
+        'url' => ['order'],
+        'get' => ['masha']
     ];
 
     protected function inputData(){
@@ -126,6 +126,42 @@ class CreateSiteMapController extends BaseAdmin
     }
 
     protected function filter($link){
+
+        $link = 'https://google.com/ord/id?Masha=ASC&amp;dqwqwq=111';
+
+        if($this->filterArr){
+
+            foreach ($this->filterArr as $type => $values){
+
+                if($values){
+
+                    foreach ($values as $item){
+
+                        $item = str_replace('/', '\/', addslashes($item));
+
+                        if($type === 'url'){
+                            if(preg_match('/' . $item . '.*[\?|$]/ui', $link)){
+                                return false;
+                            }
+
+
+                        }
+
+                        if($type === 'get'){
+
+                           if(preg_match('/(\?|&amp;|=|&)'. $item .'(=|&amp;|&|$)/ui', $link, $matches)){
+                               return false;
+                           }
+
+
+                        }
+
+                    }
+                }
+            }
+
+        }
+
        return true;
     }
 
