@@ -45,9 +45,6 @@ class CreateSiteMapController extends BaseAdmin
 
     protected function parsing($url, $index = 0){
 
-        if(mb_strlen(SITE_URL) + 1 === mb_strlen($url) &&
-            mb_strrpos($url, '/') === mb_strlen($url) - 1) return;
-
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -61,7 +58,7 @@ class CreateSiteMapController extends BaseAdmin
 
         curl_close($curl);
 
-        if(!preg_match("/Content-Type:\s+text\/html/ui", $out)){
+        if(!preg_match('/Content-Type:\s+text\/html/ui', $out)){
 
              unset($this->linkArr[$index]);
 
@@ -70,9 +67,9 @@ class CreateSiteMapController extends BaseAdmin
              return;
         }
 
-        if(!preg_match("/HTTP\/\d\.?\d?\s+20\d/uis", $out)){
+        if(!preg_match('/HTTP\/\d\.?\d?\s+20\d/uis', $out)){
 
-            $this->writeLog('Некоректная ссылка - ' . $url, $this->parsingLogFile);
+            $this->writeLog('Не корректная ссылка при парсинге- ' . $url, $this->parsingLogFile);
 
             unset($this->linkArr[$index]);
 
@@ -84,11 +81,52 @@ class CreateSiteMapController extends BaseAdmin
 
         }
 
+        preg_match_all('/<a\s*?[^>]*?href\s*?=(["\'])(.+?)\1[^>]*?>/ui', $out, $links);
+
+        if($links[2]){
+
+            foreach ($links[2] as $link){
+
+                if($link === '/' || $link === SITE_URL . '/') continue;
+
+                foreach ($this->fileArr as $ext){
+
+                    if($ext){
+
+                        $ext = addslashes($ext);
+                        $ext = str_replace('.', '\.', $ext);
+
+                        if(preg_match('/' . $ext . '\s*?$/ui', $link)){
+
+                            continue 2;
+
+                        }
+
+                    }
+
+                }
+
+                if(strpos($link, '/') === 0){
+                    $link = SITE_URL . $link;
+                }
+
+                if(!in_array($link, $this->linkArr) && $link !== '#' && strpos($link, SITE_URL) === 0){
+
+                    if($this->filter($link)){
+                        $this->linkArr[] = $link;
+                        $this->parsing($link, count($this->linkArr) - 1);
+                    }
+
+                }
+
+            }
+
+        }
 
     }
 
     protected function filter($link){
-
+       return true;
     }
 
     protected function createSiteMap(){
