@@ -28,6 +28,10 @@ class CreateSiteMapController extends BaseAdmin
             $this->redirect();
         }
 
+        if(!$this->userId) $this->execBase();
+
+        if(!$this->checkParsingTable()) return false;
+
         set_time_limit(0);
 
         if(file_exists($_SERVER['DOCUMENT_ROOT'] . PATH . 'log/' . $this->parsingLogFile));
@@ -96,7 +100,7 @@ class CreateSiteMapController extends BaseAdmin
                         $ext = addslashes($ext);
                         $ext = str_replace('.', '\.', $ext);
 
-                        if(preg_match('/' . $ext . '\s*?$/ui', $link)){
+                        if(preg_match('/' . $ext . '\s*?$|\?[^\/]/ui', $link)){
 
                             continue 2;
 
@@ -127,8 +131,6 @@ class CreateSiteMapController extends BaseAdmin
 
     protected function filter($link){
 
-        $link = 'https://google.com/ord/id?Masha=ASC&amp;dqwqwq=111';
-
         if($this->filterArr){
 
             foreach ($this->filterArr as $type => $values){
@@ -140,11 +142,9 @@ class CreateSiteMapController extends BaseAdmin
                         $item = str_replace('/', '\/', addslashes($item));
 
                         if($type === 'url'){
-                            if(preg_match('/' . $item . '.*[\?|$]/ui', $link)){
+                            if(preg_match('/^[^\?]*' . $item . '/ui', $link)){
                                 return false;
                             }
-
-
                         }
 
                         if($type === 'get'){
@@ -152,7 +152,6 @@ class CreateSiteMapController extends BaseAdmin
                            if(preg_match('/(\?|&amp;|=|&)'. $item .'(=|&amp;|&|$)/ui', $link, $matches)){
                                return false;
                            }
-
 
                         }
 
@@ -163,6 +162,24 @@ class CreateSiteMapController extends BaseAdmin
         }
 
        return true;
+    }
+
+    protected function checkParsingTable(){
+
+       $tables = $this->model->showTables();
+
+          if(!in_array('parsing_data', $tables)){
+
+              $query = 'CREATE TABLE parsing_data (all_links text, temp_links text)';
+
+              if(!$this->model->query($query, 'c') || !$this->model->add('parsing_data', ['fields' => ['all_links' => '', 'temp_links' => '']])){
+                  return false;
+              }
+
+          }
+
+          return true;
+
     }
 
     protected function createSiteMap(){

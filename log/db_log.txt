@@ -185,3 +185,7 @@ Fault: 25-01-2022 15:07:30 - Ошибка в SQL запросе: INSERT INTO tea
 file /var/www/core/base/model/BaseModel.php
 In line 37
 
+Fault: 26-01-2022 13:46:34 - Ошибка в SQL запросе: INSERT INTO parsing_table (all_links,temp_links) VALUES ('','') - 1146 Table 'site.parsing_table' doesn't exist
+file /var/www/core/base/model/BaseModel.php
+In line 37
+
