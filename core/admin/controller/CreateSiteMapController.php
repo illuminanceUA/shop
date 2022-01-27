@@ -48,16 +48,6 @@ class CreateSiteMapController extends BaseAdmin
 
         $this->maxLinks = (int)$linksCounter > 1 ? ceil($this->maxLinks / $linksCounter) : $this->maxLinks;
 
-        /**/
-      /*  $siteUrl = mb_str_replace('.', '\.', mb_str_replace('/', '\/', SITE_URL));
-        $link = '#ssfsdfdsfdsfds/';
-        if(preg_match('/^(' . $siteUrl . ')?\/?#[^\/]*?/ui', $link, $matches)){
-            return;
-        }else{
-            return;
-        }*/
-        /**/
-
         while ($this->tempLinks){
 
             $tempLinksCount = count($this->tempLinks);
@@ -111,11 +101,20 @@ class CreateSiteMapController extends BaseAdmin
             ]
         ]);
 
-            $this->createSiteMap();
+        if($this->allLinks){
 
-            !$_SESSION['res']['answer'] && $_SESSION['res']['answer'] = '<div class="success">Sitemap is created</div>';
+            foreach ($this->allLinks as $key => $link){
 
-            $this->redirect();
+                if(!$this->filter($link)) unset($this->allLinks[$key]);
+
+            }
+        }
+
+        $this->createSiteMap();
+
+        !$_SESSION['res']['answer'] && $_SESSION['res']['answer'] = '<div class="success">Sitemap is created</div>';
+
+        $this->redirect();
 
     }
 
@@ -172,73 +171,76 @@ class CreateSiteMapController extends BaseAdmin
 
         }while($status === CURLM_CALL_MULTI_PERFORM || $active);
 
+        $result = [];
 
+        foreach($urls as $i => $url){
 
-        curl_setopt($curl, CURLOPT_RANGE, 0 - 4194304);
+             $result[$i] = curl_multi_getcontent($curl[$i]);
+             curl_multi_remove_handle($curlMulti, $curl[$i]);
+             curl_close($curl[$i]);
 
-        $out = curl_exec($curl);
+            if(!preg_match('/Content-Type:\s+text\/html/ui', $result[$i])){
 
-        curl_close($curl);
+                $this->cancel(0, 'Incorrect content type ' . $url);
 
-        if(!preg_match('/Content-Type:\s+text\/html/ui', $out)){
+                continue;
+            }
 
-             unset($this->allLinks[$index]);
+            if(!preg_match('/HTTP\/\d\.?\d?\s+20\d/uis', $result[$i])){
 
-             $this->allLinks = array_values($this->allLinks);
+                $this->cancel(0, 'Incorrect server code ' . $url);
 
-             return;
-        }
+                continue;
+            }
 
-        if(!preg_match('/HTTP\/\d\.?\d?\s+20\d/uis', $out)){
-
-            $this->writeLog('Не корректная ссылка при парсинге- ' . $url, $this->parsingLogFile);
-
-            unset($this->allLinks[$index]);
-
-            $this->allLinks = array_values($this->allLinks);
-
-            $_SESSION['res']['answer'] = '<div class="error">Incorrect link in parsing - ' . $url . '<br>Sitemap is created</div>';
-
-            return;
+            $this->createLinks($result[$i]);
 
         }
 
-        preg_match_all('/<a\s*?[^>]*?href\s*?=(["\'])(.+?)\1[^>]*?>/ui', $out, $links);
+        curl_multi_close($curlMulti);
 
-        if($links[2]){
+    }
 
-            foreach ($links[2] as $link){
+    protected function createLinks($content){
 
-                if($link === '/' || $link === SITE_URL . '/') continue;
+        if($content){
 
-                foreach ($this->fileArr as $ext){
+            preg_match_all('/<a\s*?[^>]*?href\s*?=(["\'])(.+?)\1[^>]*?>/ui', $content, $links);
 
-                    if($ext){
+            if($links[2]){
 
-                        $ext = addslashes($ext);
-                        $ext = str_replace('.', '\.', $ext);
+                foreach ($links[2] as $link){
 
-                        if(preg_match('/' . $ext . '(\s*?$|\?[^\/]*$)/ui', $link)){
+                    if($link === '/' || $link === SITE_URL . '/') continue;
 
-                            continue 2;
+                    foreach ($this->fileArr as $ext){
+
+                        if($ext){
+
+                            $ext = addslashes($ext);
+                            $ext = str_replace('.', '\.', $ext);
+
+                            if(preg_match('/' . $ext . '(\s*?$|\?[^\/]*$)/ui', $link)){
+
+                                continue 2;
+
+                            }
 
                         }
 
                     }
 
-                }
+                    if(strpos($link, '/') === 0){
+                        $link = SITE_URL . $link;
+                    }
 
-                if(strpos($link, '/') === 0){
-                    $link = SITE_URL . $link;
-                }
+                    $siteUrl = mb_str_replace('.', '\.', mb_str_replace('/', '\/', SITE_URL));
 
-                $siteUrl = mb_str_replace('.', '\.', mb_str_replace('/', '\/', SITE_URL));
+                    if(!in_array($link, $this->allLinks) && !preg_match('/^(' . $siteUrl . ')?\/?#[^\/]*?$/ui', $link) && strpos($link, SITE_URL) === 0){
 
-                if(!in_array($link, $this->allLinks) && !preg_match('/^(' . $siteUrl . ')?\/?#[^\/]*?$/ui', $link) && strpos($link, SITE_URL) === 0){
+                     $this->tempLinks[] = $link;
+                     $this->allLinks[] = $link;
 
-                    if($this->filter($link)){
-                        $this->allLinks[] = $link;
-                        $this->parsing($link, count($this->allLinks) - 1);
                     }
 
                 }
@@ -246,7 +248,6 @@ class CreateSiteMapController extends BaseAdmin
             }
 
         }
-
     }
 
     protected function filter($link){
