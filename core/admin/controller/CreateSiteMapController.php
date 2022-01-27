@@ -48,6 +48,16 @@ class CreateSiteMapController extends BaseAdmin
 
         $this->maxLinks = (int)$linksCounter > 1 ? ceil($this->maxLinks / $linksCounter) : $this->maxLinks;
 
+        /**/
+      /*  $siteUrl = mb_str_replace('.', '\.', mb_str_replace('/', '\/', SITE_URL));
+        $link = '#ssfsdfdsfdsfds/';
+        if(preg_match('/^(' . $siteUrl . ')?\/?#[^\/]*?/ui', $link, $matches)){
+            return;
+        }else{
+            return;
+        }*/
+        /**/
+
         while ($this->tempLinks){
 
             $tempLinksCount = count($this->tempLinks);
@@ -94,10 +104,12 @@ class CreateSiteMapController extends BaseAdmin
 
         }
 
-       /* if(file_exists($_SERVER['DOCUMENT_ROOT'] . PATH . 'log/' . $this->parsingLogFile));
-            @unlink($_SERVER['DOCUMENT_ROOT'] . PATH . 'log/' . $this->parsingLogFile);*/
-
-         //   $this->parsing(SITE_URL);
+        $this->model->edit('parsing_data', [
+            'fields' => [
+                'temp_links' => '',
+                'all_links' => ''
+            ]
+        ]);
 
             $this->createSiteMap();
 
@@ -160,7 +172,7 @@ class CreateSiteMapController extends BaseAdmin
                         $ext = addslashes($ext);
                         $ext = str_replace('.', '\.', $ext);
 
-                        if(preg_match('/' . $ext . '\s*?$|\?[^\/]/ui', $link)){
+                        if(preg_match('/' . $ext . '(\s*?$|\?[^\/]*$)/ui', $link)){
 
                             continue 2;
 
@@ -174,7 +186,9 @@ class CreateSiteMapController extends BaseAdmin
                     $link = SITE_URL . $link;
                 }
 
-                if(!in_array($link, $this->allLinks) && $link !== '#' && strpos($link, SITE_URL) === 0){
+                $siteUrl = mb_str_replace('.', '\.', mb_str_replace('/', '\/', SITE_URL));
+
+                if(!in_array($link, $this->allLinks) && !preg_match('/^(' . $siteUrl . ')?\/?#[^\/]*?$/ui', $link) && strpos($link, SITE_URL) === 0){
 
                     if($this->filter($link)){
                         $this->allLinks[] = $link;
