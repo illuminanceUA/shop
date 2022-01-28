@@ -118,7 +118,7 @@ class CreateSiteMapController extends BaseAdmin
 
     }
 
-    protected function parsing($urls, $index = 0){
+    protected function parsing($urls){
 
         if(!$urls) return;
 
@@ -329,7 +329,49 @@ class CreateSiteMapController extends BaseAdmin
 
     }
 
-    protected function createSiteMap(){
+    protected function createSiteMap(){ // создает карту сайта (записывает в sitemap.xml)
+
+        $dom = new \domDocument('1.0', 'utf-8');
+        $dom->formatOutput = true;
+
+        $root = $dom->createElement('urlset');
+        $root->setAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+        $root->setAttribute('xmlns:xls', 'http://w3.org/2001/XMLSchema-instance');
+        $root->setAttribute('xsi:schemaLocation', 'http://www.sitemaps.org/schemas/sitemap/0.9 http://http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd');
+
+        $dom->appendChild($root);
+
+        $sxe = simplexml_import_dom($dom);
+
+        if($this->allLinks){
+
+            $date = new \DateTime();
+            $lastMod = $date->format('Y-m-d') . 'T' . $date->format('H:i:s+01:00');
+
+            foreach ($this->allLinks as $item){
+
+                $elem = trim(mb_substr($item, mb_strlen(SITE_URL)), '/');
+                $elem = explode('/', $elem);
+
+                $count = '0.' . (count($elem) - 1);
+                $priority = 1 - (float) $count;
+
+                if($priority == 1) $priority = '1.0';
+
+                $urlMain = $sxe->addChild('url');
+
+                $urlMain->addChild('loc', htmlspecialchars($item));
+
+                $urlMain->addChild('lastmod', $lastMod);
+                $urlMain->addChild('changeFreq', 'weekly');
+                $urlMain->addChild('priority', $priority);
+
+            }
+
+        }
+
+        $dom->save($_SERVER['DOCUMENT_ROOT'] . PATH . 'sitemap.xml'); // создаст файл sitemap.xml в корне проекта и запишет карту сайт (ссылки)
 
     }
+
 }
