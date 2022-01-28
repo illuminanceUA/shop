@@ -1,8 +1,6 @@
 <?php
 
-
 namespace core\admin\controller;
-
 
 use core\base\controller\BaseMethods;
 
@@ -19,7 +17,7 @@ class CreateSiteMapController extends BaseAdmin
     protected $fileArr = ['jpg', 'png', 'jpeg', 'gif', 'xls', 'xlsx', 'pdf', 'mp4', 'mpeg', 'avi', 'mp3', 'move'];
 
     protected $filterArr = [
-        'url' => [],
+        'url' => ['order', 'page'],
         'get' => []
     ];
 
