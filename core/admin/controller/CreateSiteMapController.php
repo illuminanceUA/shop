@@ -186,7 +186,7 @@ class CreateSiteMapController extends BaseAdmin
                 continue;
             }
 
-            if(!preg_match('/HTTP\/\d\.?\d?\s+20\d/uis', $result[$i])){
+            if(!preg_match('/HTTP\/\d\.?\d?\s+20\d/ui', $result[$i])){
 
                 $this->cancel(0, 'Incorrect server code ' . $url);
 
