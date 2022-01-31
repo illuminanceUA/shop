@@ -7,7 +7,7 @@ const ADMIN_TEMPLATE = 'core/admin/view/';
 const UPLOAD_DIR = 'userfiles/';
 
 const COOKIE_VERSION = '1.0.0';
-const CRYPT_KEY = ''; // ключ шифрования
+const CRYPT_KEY = 'TjWmZq4t7w!z%C*FbQeThWmYq3t6w9z$G+KbPeShVmYp3s6v%D*G-KaPdSgVkYp2w!z%C*F-JaNdRgUk3t6w9z$C&F)J@NcRkYp3s6v9y$B&E)H@SgVkXp2s5v8y/B?E'; // ключ шифрования
 const COOKIE_TIME = 60; // время бездействия
 const BLOCK_TIME = 3; // ВРЕМЯ БЛОКИРОВКИ ПОЛЬЗОВАТЕЛЯ КОТОРЫЙ ПОПЫТАЛСЯ ПОДОБРАТЬ ПАРОЛЬ К САЙТУ.
 
