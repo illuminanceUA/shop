@@ -10,6 +10,7 @@ class CreateSiteMapController extends BaseAdmin
 
     protected $allLinks = [];
     protected $tempLinks = [];
+    protected $badLinks = [];
 
     protected $maxLinks = 5000;
 
@@ -21,7 +22,9 @@ class CreateSiteMapController extends BaseAdmin
         'get' => []
     ];
 
-    protected function inputData($linksCounter = 1){
+    public function inputData($linksCounter = 1, $redirect = true){
+
+        $linksCounter = $this->clearNum($linksCounter);
 
         if(!function_exists('curl_init')){
             $this->cancel(0, 'Library CURL as absent. Creation of sitemap impossible', '', true);
@@ -37,10 +40,14 @@ class CreateSiteMapController extends BaseAdmin
 
         $reserve = $this->model->get('parsing_data')[0];
 
+        $tableRows = [];
+
         foreach ($reserve as $name => $item){
 
+            $tableRows[$name] = '';
+
             if($item) $this->$name = json_decode($item);
-               else $this->$name = [SITE_URL];
+            elseif($name === 'all_links' || $name === 'temp_links') $this->$name = [SITE_URL];
 
         }
 
@@ -68,11 +75,15 @@ class CreateSiteMapController extends BaseAdmin
 
                     if($links){
 
+                        foreach ($tableRows as $name => $item){
+
+                            if($name === 'temp_links') $tableRows[$name] =  json_encode(array_merge(...$links));
+                            else $tableRows[$name] = json_encode($this->$name);
+
+                        }
+
                         $this->model->edit('parsing_data', [
-                            'fields' => [
-                                'temp_links' => json_encode(array_merge(...$links)),
-                                'all_links' => json_encode($this->allLinks)
-                            ]
+                            'fields' => $tableRows
                         ]);
                     }
 
@@ -83,36 +94,48 @@ class CreateSiteMapController extends BaseAdmin
                 $this->parsing($links);
             }
 
+            foreach ($tableRows as $name => $item){
+
+              $tableRows[$name] = json_encode($this->$name);
+
+            }
+
             $this->model->edit('parsing_data', [
-                'fields' => [
-                    'temp_links' => json_encode($this->tempLinks),
-                    'all_links' => json_encode($this->allLinks)
-                ]
+                'fields' => $tableRows
             ]);
 
         }
 
+        foreach ($tableRows as $name => $item){
+
+            $tableRows[$name] = '';
+
+        }
+
         $this->model->edit('parsing_data', [
-            'fields' => [
-                'temp_links' => '',
-                'all_links' => ''
-            ]
+            'fields' => $tableRows
         ]);
 
         if($this->allLinks){
 
             foreach ($this->allLinks as $key => $link){
 
-                if(!$this->filter($link)) unset($this->allLinks[$key]);
+                if(!$this->filter($link) || in_array($link, $this->badLinks)) unset($this->allLinks[$key]);
 
             }
         }
 
         $this->createSiteMap();
 
-        !$_SESSION['res']['answer'] && $_SESSION['res']['answer'] = '<div class="success">Sitemap is created</div>';
+        if($redirect){
 
-        $this->redirect();
+            !$_SESSION['res']['answer'] && $_SESSION['res']['answer'] = '<div class="success">Sitemap is created</div>';
+
+            $this->redirect();
+
+        }else{
+             $this->cancel(1, 'Sitemap is created!' . count($this->allLinks) . ' links', '', true);
+        }
 
     }
 
@@ -179,12 +202,16 @@ class CreateSiteMapController extends BaseAdmin
 
             if(!preg_match('/Content-Type:\s+text\/html/ui', $result[$i])){
 
+                $this->badLinks[] = $url;
+
                 $this->cancel(0, 'Incorrect content type ' . $url);
 
                 continue;
             }
 
             if(!preg_match('/HTTP\/\d\.?\d?\s+20\d/ui', $result[$i])){
+
+                $this->badLinks[] = $url;
 
                 $this->cancel(0, 'Incorrect server code ' . $url);
 
@@ -234,7 +261,10 @@ class CreateSiteMapController extends BaseAdmin
 
                     $siteUrl = mb_str_replace('.', '\.', mb_str_replace('/', '\/', SITE_URL));
 
-                    if(!in_array($link, $this->allLinks) && !preg_match('/^(' . $siteUrl . ')?\/?#[^\/]*?$/ui', $link) && strpos($link, SITE_URL) === 0){
+                    if(!in_array($link, $this->badLinks) &&
+                        !preg_match('/^(' . $siteUrl . ')?\/?#[^\/]*?$/ui', $link) &&
+                        strpos($link, SITE_URL) === 0 &&
+                        !in_array($link, $this->allLinks)){
 
                      $this->tempLinks[] = $link;
                      $this->allLinks[] = $link;
@@ -289,9 +319,10 @@ class CreateSiteMapController extends BaseAdmin
 
           if(!in_array('parsing_data', $tables)){
 
-              $query = 'CREATE TABLE parsing_data (all_links text, temp_links text)';
+              $query = 'CREATE TABLE parsing_data (all_links longtext, temp_links longtext, bad_links longtext)';
 
-              if(!$this->model->query($query, 'c') || !$this->model->add('parsing_data', ['fields' => ['all_links' => '', 'temp_links' => '']])){
+              if(!$this->model->query($query, 'c') ||
+                    !$this->model->add('parsing_data', ['fields' => ['all_links' => '', 'temp_links' => '', 'bad_links' => '']])){
                   return false;
               }
 

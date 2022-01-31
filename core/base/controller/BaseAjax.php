@@ -23,6 +23,9 @@ class BaseAjax extends BaseController
 
        }
 
+
+       $controller = str_replace('/', '\\', $controller);
+
        $ajax = new $controller;
 
        $ajax->createAjaxData();

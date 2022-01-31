@@ -58,6 +58,8 @@ const Ajax = (set) => {
 
         if(!contentType) xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
 
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
         xhr.onload = function (){
 
             if(this.status >= 200 && this.status < 300){
