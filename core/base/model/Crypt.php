@@ -23,7 +23,13 @@ class Crypt
 
         $hmac = hash_hmac($this->hashAlgoritm, $cipherText, CRYPT_KEY, true);
 
-        return base64_encode($iv.$hmac.$cipherText);
+     //   return base64_encode($iv.$hmac.$cipherText);
+
+        $cipherTextComb = '112233445566778899';
+        $ivComb = 'abcdefg';
+        $hmacComb = '000000000000';
+
+        $res = $this->cryptCombine($cipherTextComb, $ivComb, $hmacComb);
 
     }
 
@@ -46,6 +52,49 @@ class Crypt
         if(hash_equals($hmac, $calcmac)) return $originalPlaintext;
 
         return false;
+
+    }
+
+    protected function cryptCombine($str, $iv, $hmac)
+    {
+        $newStr = '';
+
+        $strLen = strlen($str);
+
+        $counter = (int)ceil(strlen(CRYPT_KEY) / ($strLen + strlen($hmac)));
+
+        $progress = 1;
+
+        if($counter >= $strLen) $counter = 1;
+
+        for ($i = 0; $i < $strLen; $i++){
+
+            if($counter < $strLen){
+
+                if($counter === $i){
+
+                    $newStr .= substr($iv, $progress - 1, 1);
+                    $progress++;
+                    $counter += $progress;
+
+                }
+
+            }else{
+                break;
+            }
+
+            $newStr .= substr($str, $i, 1);
+
+        }
+
+        $newStr .= substr($str, $i);
+        $newStr .= substr($iv, $progress - 1);
+
+        $newStrHalf = (int)ceil(strlen($newStr) / 2);
+
+        $newStr = substr($newStr, 0, $newStrHalf) . $hmac .  substr($newStr, $newStrHalf);
+
+        return base64_encode($newStr);
 
     }
 
