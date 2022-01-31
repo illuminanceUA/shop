@@ -10,7 +10,7 @@ class IndexController extends BaseController
 
     protected function inputData()
     {
-        $str = '1234567890';
+        $str = '1234567890absdifg';
 
         $enStr = \core\base\model\Crypt::instance()->encrypt($str);
 

@@ -23,33 +23,22 @@ class Crypt
 
         $hmac = hash_hmac($this->hashAlgoritm, $cipherText, CRYPT_KEY, true);
 
-     //   return base64_encode($iv.$hmac.$cipherText);
-
-        $cipherTextComb = '112233445566778899';
-        $ivComb = 'abcdefg';
-        $hmacComb = '000000000000';
-
-        $res = $this->cryptCombine($cipherTextComb, $ivComb, $hmacComb);
+        return $this->cryptCombine($cipherText, $iv, $hmac);
 
     }
 
     public function decrypt($str)
     {
-        $cryptStr = base64_decode($str);
 
         $ivlen = openssl_cipher_iv_length($this->cryptMethod);
 
-        $iv = substr($cryptStr, 0, $ivlen);
+        $cryptData = $this->cryptUnCombine($str, $ivlen);
 
-        $hmac = substr($cryptStr, $ivlen, $this->hashLength);
+        $originalPlaintext = openssl_decrypt($cryptData['str'], $this->cryptMethod, CRYPT_KEY, OPENSSL_RAW_DATA, $cryptData['iv']);
 
-        $cipherText = substr($cryptStr, $ivlen + $this->hashLength);
+        $calcmac = hash_hmac($this->hashAlgoritm, $cryptData['str'], CRYPT_KEY, true);
 
-        $originalPlaintext = openssl_decrypt($cipherText, $this->cryptMethod, CRYPT_KEY, OPENSSL_RAW_DATA, $iv);
-
-        $calcmac = hash_hmac($this->hashAlgoritm, $cipherText, CRYPT_KEY, true);
-
-        if(hash_equals($hmac, $calcmac)) return $originalPlaintext;
+        if(hash_equals($cryptData['hmac'], $calcmac)) return $originalPlaintext;
 
         return false;
 
@@ -61,7 +50,7 @@ class Crypt
 
         $strLen = strlen($str);
 
-        $counter = (int)ceil(strlen(CRYPT_KEY) / ($strLen + strlen($hmac)));
+        $counter = (int) ceil(strlen(CRYPT_KEY) / ($strLen + $this->hashLength));
 
         $progress = 1;
 
@@ -90,11 +79,64 @@ class Crypt
         $newStr .= substr($str, $i);
         $newStr .= substr($iv, $progress - 1);
 
-        $newStrHalf = (int)ceil(strlen($newStr) / 2);
+        $newStrHalf = (int) ceil(strlen($newStr) / 2);
 
         $newStr = substr($newStr, 0, $newStrHalf) . $hmac .  substr($newStr, $newStrHalf);
 
         return base64_encode($newStr);
+
+    }
+
+    protected function cryptUnCombine($str, $ivlen)
+    {
+
+        $cryptData = [];
+
+        $str = base64_decode($str);
+
+        $hashPosition = (int) ceil(strlen($str) / 2 - $this->hashLength / 2);
+
+        $cryptData['hmac'] = substr($str, $hashPosition, $this->hashLength);
+
+        $str = str_replace($cryptData['hmac'], '', $str);
+
+        $counter = (int) ceil(strlen(CRYPT_KEY) / (strlen($str) - $ivlen + $this->hashLength));
+
+        $progress = 2;
+
+        $cryptData['str'] = '';
+        $cryptData['iv'] = '';
+
+        for ($i = 0; $i < strlen($str); $i++){
+
+            if($ivlen + strlen($cryptData['str']) < strlen($str)){
+
+                if($i === $counter){
+
+                    $cryptData['iv'] .= substr($str, $counter, 1);
+                    $progress++;
+                    $counter += $progress;
+
+                }else{
+
+                    $cryptData['str'] .= substr($str, $i, 1);
+
+                }
+
+            }else{
+
+                $cryptDataLen = strlen($cryptData['str']);
+
+                $cryptData['str'] .= substr($str, $i, strlen($str) - $ivlen - $cryptDataLen);
+                $cryptData['iv'] .= substr($str, $i + (strlen($str) - $ivlen - $cryptDataLen));
+
+                break;
+
+            }
+
+        }
+
+        return $cryptData;
 
     }
 
