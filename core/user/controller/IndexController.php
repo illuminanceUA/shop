@@ -25,11 +25,11 @@ class IndexController extends BaseController
             'join' => [
                 'stud_teach' => ['on' => ['id', 'teachers']],
                 'students' => [
-                    'fields' => ['name as student_name'],
+                    'fields' => ['name as student_name', 'content'],
                     'on' => ['students', 'id']
                 ]
             ],
-          //  'join_structure' => true
+            'join_structure' => true
         ]);
 
         exit('Это главная страница!');
