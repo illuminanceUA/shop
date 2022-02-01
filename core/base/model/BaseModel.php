@@ -29,7 +29,8 @@ abstract class BaseModel extends BaseModelMethods
      * @throws DbException
      */
 
-  final public function query($query, $crud = 'r', $return_id = false){
+  final public function query($query, $crud = 'r', $return_id = false)
+  {
 
      $result = $this->db->query($query);
 
@@ -111,7 +112,8 @@ abstract class BaseModel extends BaseModelMethods
      *            ]
      */
 
-        final public function get($table, $set = []){
+        final public function get($table, $set = [])
+        {
 
             $fields = $this->createFields($set, $table);
 
@@ -134,7 +136,15 @@ abstract class BaseModel extends BaseModelMethods
 
             $query = "SELECT $fields FROM $table $join $where $order $limit";
 
-            return $this->query($query);
+            $res = $this->query($query);
+
+            if(isset($set['join_structure']) && $set['join_structure'] && $res){
+
+                $res = $this->joinStructure($res, $table);
+
+            }
+
+            return $res;
 
         }
 
@@ -149,7 +159,8 @@ abstract class BaseModel extends BaseModelMethods
      * @return mixed
      */
 
-        final public function add($table, $set = []){  // Метод добавления данных в таблицу
+        final public function add($table, $set = [])  // Метод добавления данных в таблицу
+        {
 
            $set['fields'] = (is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : $_POST;
            $set['files'] = (is_array($set['files']) && !empty($set['files'])) ? $set['files'] : false;
@@ -166,7 +177,8 @@ abstract class BaseModel extends BaseModelMethods
 
         }
 
-        final public function edit($table, $set = []){
+        final public function edit($table, $set = [])
+        {
 
             $set['fields'] = (is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : $_POST;
             $set['files'] = (is_array($set['files']) && !empty($set['files'])) ? $set['files'] : false;
@@ -233,7 +245,8 @@ abstract class BaseModel extends BaseModelMethods
          *            ]
          */
 
-        public function delete($table, $set){
+        public function delete($table, $set = [])
+        {
 
             $table = trim($table);
 
@@ -274,26 +287,49 @@ abstract class BaseModel extends BaseModelMethods
 
         }
 
-        final  public function showColumns($table){
+        final  public function showColumns($table)
+        {
+
+            if(!isset($this->tableRows[$table]) || $this->tableRows[$table]){
 
                 $query = "SHOW COLUMNS FROM $table";
 
                 $res = $this->query($query);
 
-                $columns = [];
+                $this->tableRows[$table] = [];
 
                 if($res){
 
                     foreach ($res as $row){
-                        $columns[$row['Field']] = $row;
-                        if($row['Key'] === 'PRI') $columns['id_row'] = $row['Field'];
-                    }
-                }
+                        $this->tableRows[$table][$row['Field']] = $row;
 
-                return $columns;
+                        if($row['Key'] === 'PRI'){
+
+                            if(!isset($this->tableRows[$table]['id_row'])){
+
+                                $this->tableRows[$table]['id_row'] = $row['Field'];
+
+                            }else{
+
+                                if(!isset($this->tableRows[$table]['multi_id_row'])) $this->tableRows[$table]['multi_id_row'][] = $this->tableRows[$table]['id_row'];
+
+                                $this->tableRows[$table]['multi_id_row'][] = $row['Field'];
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+
+                return $this->tableRows[$table];
+
         }
 
-        final public function showTables(){
+        final public function showTables()
+        {
 
             $query = 'SHOW TABLES';
 

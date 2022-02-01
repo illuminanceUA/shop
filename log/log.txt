@@ -5066,3 +5066,115 @@ Fault: 31-01-2022 13:55:29 - Class core\user\controller\Favicon.icoController do
 file /var/www/core/base/controller/BaseController.php
 In line 45
 
+Fault: 01-02-2022 9:53:18 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:17:33 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:17:36 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:17:47 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:18:00 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:18:06 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:18:07 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:18:46 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:18:55 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:22:47 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:22:50 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:22:55 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:27:53 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:27:56 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:35:38 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:35:44 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:42:44 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:43:50 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:50:34 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:51:07 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:52:43 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 11:52:49 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 12:07:13 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 12:14:18 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 12:18:01 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 12:20:35 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 12:22:17 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
+Fault: 01-02-2022 12:23:25 - Class core\user\controller\Favicon.icoController does not exist
+file /var/www/core/base/controller/BaseController.php
+In line 45
+
