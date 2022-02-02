@@ -25,6 +25,8 @@ class AddController extends BaseAdmin
 
           $this->createOutputData();
 
+          $this->createManyToMany();
+
     }
 
     protected function createForeignProperty($arr, $rootItems){
