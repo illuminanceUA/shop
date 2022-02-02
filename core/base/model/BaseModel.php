@@ -114,7 +114,6 @@ abstract class BaseModel extends BaseModelMethods
 
         final public function get($table, $set = [])
         {
-
             $fields = $this->createFields($set, $table);
 
             $order = $this->createOrder($set, $table);
@@ -129,6 +128,7 @@ abstract class BaseModel extends BaseModelMethods
             $fields .= $joinArr['fields'];
             $join = $joinArr['join'];
             $where .= $joinArr['where'];
+
 
             $fields = rtrim($fields, ',');
 

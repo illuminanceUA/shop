@@ -197,3 +197,179 @@ Fault: 02-02-2022 8:37:40 - Ошибка в SQL запросе: SELECT goods.*,g
 file /var/www/core/base/model/BaseModel.php
 In line 38
 
+Fault: 02-02-2022 10:57:08 - Ошибка в SQL запросе: SELECT goods.*,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN filters f ON goods.students=Array.id LEFT JOIN filters ON f.parent_id=Array.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1054 Unknown column 'goods.students' in 'on clause'
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 10:58:45 - Ошибка в SQL запросе: SELECT goods.*,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN filters f ON goods.students=goods.id LEFT JOIN filters ON f.parent_id=goods.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1054 Unknown column 'goods.students' in 'on clause'
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 10:59:38 - Ошибка в SQL запросе: SELECT goods.*,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN filters f ON goods.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1054 Unknown column 'goods.students' in 'on clause'
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:01:42 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:01:58 - Ошибка в SQL запросе: SELECT goods.*,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN filters f ON goods.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1054 Unknown column 'goods.students' in 'on clause'
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:01:59 - Ошибка в SQL запросе: SELECT goods.*,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN filters f ON goods.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1054 Unknown column 'goods.students' in 'on clause'
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:03:34 - Ошибка в SQL запросе: SELECT goods.*,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN filters f ON goods.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1054 Unknown column 'goods.students' in 'on clause'
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:04:13 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:08:38 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:08:40 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:22:19 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:24:03 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:24:55 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:41:01 - Ошибка в SQL запросе: SELECT f.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods f LEFT JOIN goods_filters ON f.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE f.id IN ('16','17')  ORDER BY f.RAND() ASC  - 1066 Not unique table/alias: 'f'
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:56:32 - Ошибка в SQL запросе: SELECT goods.*,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN filters f ON goods.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1054 Unknown column 'goods.students' in 'on clause'
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:57:05 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:57:27 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 11:59:35 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 12:00:56 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 12:01:03 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 12:15:26 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 12:20:28 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM  LEFT JOIN goods_filters ON .id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE id IN ('16','17')  ORDER BY RAND() ASC  - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEFT JOIN goods_filters ON .id=goods_filters.teachers LEFT JOIN filters f ON goo' at line 1
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 12:22:24 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 12:23:07 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 12:24:54 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 12:28:42 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 12:28:46 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 12:28:56 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 12:28:58 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 12:50:09 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 13:08:19 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goodsRAND() ASC  - 1305 FUNCTION site.goodsRAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 13:08:36 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 13:14:38 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 13:16:02 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 13:16:33 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 13:19:22 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 13:20:50 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 13:21:18 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 13:23:11 - Ошибка в SQL запросе: SELECT goods.*,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN filters f ON goods.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1054 Unknown column 'goods.students' in 'on clause'
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 13:40:07 - Ошибка в SQL запросе: SELECT g.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods g LEFT JOIN goods_filters ON g.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE g.id IN ('16','17')  ORDER BY g.RAND() ASC  - 1305 FUNCTION g.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 13:40:24 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 13:49:16 - Ошибка в SQL запросе: SELECT goods.*,f.name as student_name,f.content,filters.* FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 13:50:09 - Ошибка в SQL запросе: SELECT goods.*,f.name as student_name,f.content,filters.* FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.id ASC,goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 13:50:30 - Ошибка в SQL запросе: SELECT goods.*,f.name as TABLEfTABLE_student_name,f.content as TABLEfTABLE_content,f.id as TABLEfTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.id ASC,goods.RAND() ASC  - 1305 FUNCTION goods.RAND does not exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
