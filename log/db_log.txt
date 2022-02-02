@@ -189,3 +189,11 @@ Fault: 26-01-2022 13:46:34 - Ошибка в SQL запросе: INSERT INTO par
 file /var/www/core/base/model/BaseModel.php
 In line 37
 
+Fault: 02-02-2022 8:31:38 - Ошибка в SQL запросе: SHOW COLUMNS FROM teachers - 1146 Table 'site.teachers' doesn't exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
+Fault: 02-02-2022 8:37:40 - Ошибка в SQL запросе: SELECT goods.*,goods_filters.students as TABLEgoods_filtersTABLE_students,goods_filters.teachers as TABLEgoods_filtersTABLE_teachers,filters.name as TABLEfiltersTABLE_student_name,filters.content as TABLEfiltersTABLE_content,filters.id as TABLEfiltersTABLE_id,filters.id as TABLEfiltersTABLE_id,filters.name as TABLEfiltersTABLE_name,filters.content as TABLEfiltersTABLE_content,filters.parent_id as TABLEfiltersTABLE_parent_id,filters.visible as TABLEfiltersTABLE_visible FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters ON goods_filters.students=filters.id LEFT JOIN filters ON filters.parent_id=filters.id WHERE goods.id IN ('16','17')    - 1066 Not unique table/alias: 'filters'
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
