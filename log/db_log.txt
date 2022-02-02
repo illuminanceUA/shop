@@ -373,3 +373,7 @@ Fault: 02-02-2022 13:50:30 - Ошибка в SQL запросе: SELECT goods.*,
 file /var/www/core/base/model/BaseModel.php
 In line 38
 
+Fault: 02-02-2022 14:20:17 - Ошибка в SQL запросе: SHOW COLUMNS FROM teachers - 1146 Table 'site.teachers' doesn't exist
+file /var/www/core/base/model/BaseModel.php
+In line 38
+

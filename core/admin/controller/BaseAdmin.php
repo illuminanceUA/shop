@@ -27,6 +27,7 @@ abstract class BaseAdmin extends BaseController
     protected $fileArray;
 
     protected $messages;
+    protected $settings;
 
     protected $translate;
     protected $blocks = [];
@@ -485,6 +486,63 @@ abstract class BaseAdmin extends BaseController
         }
 
         return false;
+
+    }
+
+    protected function createOrderData($table)
+    {
+
+        $columns = $this->model->showColumns($table);
+
+        if(!$columns)
+            throw new RouteException('Отсутствуют поля в таблице ' . $table);
+
+
+
+        $name = '';
+        $orderName = '';
+
+        if($columns['name']){
+            $orderName = $name = 'name';
+        }else{
+
+            foreach ($columns as $key => $value){
+                if(strpos($key, 'name') !== false){
+                    $orderName = $key;
+                    $name = $key . ' as name';
+                }
+            }
+
+            if(!$name) $name = $columns['id_row'] . ' as name';
+
+        }
+
+        $parentId = '';
+        $order = [];
+
+        if($columns['parent_id'])
+             $order[] = $parentId = 'parent_id';
+
+        if($columns['menu_position']) $order[] = 'menu_position';
+           else $order[] = $orderName;
+
+        return compact('name', 'parentId', 'order', 'columns');
+
+    }
+
+    protected function createManyToMany($settings = false)
+    {
+
+        if(!$settings) $settings = $this->settings ? : Settings::instance();
+
+        $manyToMany = $settings::get('manyToMany');
+        $blocks = $settings::get('blockNeedle');
+
+        if($manyToMany){
+
+
+
+        }
 
     }
 }

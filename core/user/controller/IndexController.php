@@ -30,8 +30,8 @@ class IndexController extends BaseController
                     'on' => ['parent_id', 'id']
                 ]
             ],
-            'join_structure' => true,
-           'order' => 'id',
+          //  'join_structure' => true,
+            'order' => 'id',
            // 'order' => ['id', 'RAND()'],
             'order_direction' => ['DESC']
         ]);

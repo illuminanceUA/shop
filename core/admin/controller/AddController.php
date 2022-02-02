@@ -34,23 +34,7 @@ class AddController extends BaseAdmin
             $this->foreignData[$arr['COLUMN_NAME']][0]['name'] = $rootItems['name'];
         }
 
-        $columns = $this->model->showColumns($arr['REFERENCED_TABLE_NAME']);
-
-        $name = '';
-
-        if($columns['name']){
-            $name = 'name';
-        }else{
-
-            foreach ($columns as $key => $value){
-                if(strpos($key, 'name') !== false){
-                    $name = $key . ' as name';
-                }
-            }
-
-            if(!$name) $name = $columns['id_row'] . ' as name';
-
-        }
+       $orderData = $this->createOrderData($arr['REFERENCED_TABLE_NAME']);
 
         if($this->data){
             if($arr['REFERENCED_TABLE_NAME'] === $this->table){
@@ -60,9 +44,10 @@ class AddController extends BaseAdmin
         }
 
         $foreign = $this->model->get($arr['REFERENCED_TABLE_NAME'], [
-            'fields' => [$arr['REFERENCED_COLUMN_NAME'] . ' as id', $name],
+            'fields' => [$arr['REFERENCED_COLUMN_NAME'] . ' as id', $orderData['name'], $orderData['parent_id']],
             'where' => $where,
-            'operand' => $operand
+            'operand' => $operand,
+            'order' => $orderData['order']
         ]);
 
         if($foreign){

@@ -43,7 +43,7 @@ class Settings
 
     private $messages = 'core/base/messages/';
 
-    private $defaultTable = 'teachers';
+    private $defaultTable = 'goods';
 
     private $formTemplates = PATH . 'core/admin/view/include/form_templates/';
 
@@ -56,6 +56,7 @@ class Settings
       'text' => ['name'],
       'textarea' => ['keywords', 'content'],
       'radio' => ['visible'],
+      'checkboxlist' => ['filters'],
       'select' => ['menu_position', 'parent_id'],
       'img' => ['img'],
       'gallery_img' => ['gallery_img']
@@ -80,6 +81,10 @@ class Settings
         'vg-rows' => [],
         'vg-img' => 'img', // ['img']
         'vg-content' => 'content' // ['content']
+    ];
+
+    private $manyToMany = [
+        'goods_filters' => ['goods', 'filters'] // 'type' => 'child' || 'type' => 'root'
     ];
 
     private $validation = [
