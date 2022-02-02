@@ -19,7 +19,7 @@ class IndexController extends BaseController
             'operand' => ['IN'],
             'join' => [
                 'goods_filters' => ['on' => ['id', 'teachers']],
-                'filters' => [
+                'filters f' => [
                     'fields' => ['name as student_name', 'content'],
                     'on' => ['students', 'id']
                 ],

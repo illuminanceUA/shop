@@ -13,6 +13,20 @@ abstract class BaseModelMethods
 
     protected function createFields($set, $table = false, $join = false)
     {
+        if(array_key_exists('fields', $set) && $set['fields'] === null) return '';
+
+        $concatTable = '';
+        $aliasTable = $table;
+
+        if(!$set['no_concat']){
+
+            $arr = $this->createTableAlias($table);
+
+            $concatTable = $arr['alias'] . '.';
+
+            $aliasTable = $arr['alias'];
+
+        }
 
         $fields = '';
 
@@ -27,8 +41,6 @@ abstract class BaseModelMethods
             if(isset($this->tableRows[$table]['multi_id_row'])) $set['fields'] = [];
         }
 
-        $concatTable = $table && !$set['concat'] ? $table . '.' : '';
-
         if(!isset($set['fields']) || !is_array($set['fields']) || !$set['fields']){
 
             if(!$join){
@@ -37,11 +49,11 @@ abstract class BaseModelMethods
 
             }else{
 
-                foreach ($this->tableRows[$table] as $key => $item){
+                foreach ($this->tableRows[$aliasTable] as $key => $item){
 
                     if($key !== 'id_row' && $key !== 'multi_id_row'){
 
-                        $fields .= $concatTable . $key . ' as TABLE' . $table . 'TABLE_' . $key . ',';
+                        $fields .= $concatTable . $key . ' as TABLE' . $aliasTable . 'TABLE_' . $key . ',';
 
                     }
 
@@ -55,7 +67,7 @@ abstract class BaseModelMethods
 
             foreach ($set['fields'] as $field){
 
-                if($join_structure && !$id_field && $this->tableRows[$table] === $field){
+                if($join_structure && !$id_field && $this->tableRows[$aliasTable] === $field){
 
                     $id_field = true;
 
@@ -67,11 +79,11 @@ abstract class BaseModelMethods
 
                         if (preg_match('/^(.+)?\s+as\s+(.+)/i', $field, $matches)){
 
-                            $fields .= $concatTable . $matches[1] . ' as TABLE' . $table . 'TABLE_' . $matches[2] . ',';
+                            $fields .= $concatTable . $matches[1] . ' as TABLE' . $aliasTable . 'TABLE_' . $matches[2] . ',';
 
                         }else{
 
-                            $fields .= $concatTable . $field . ' as TABLE' . $table . 'TABLE_' . $field . ',';
+                            $fields .= $concatTable . $field . ' as TABLE' . $aliasTable . 'TABLE_' . $field . ',';
 
                         }
 
@@ -89,11 +101,11 @@ abstract class BaseModelMethods
 
                 if($join){
 
-                    $fields .= $concatTable . $this->tableRows[$table]['id_row'] . ' as TABLE' . $table . 'TABLE_' . $this->tableRows[$table]['id_row'] . ',';
+                    $fields .= $concatTable . $this->tableRows[$aliasTable]['id_row'] . ' as TABLE' . $aliasTable . 'TABLE_' . $this->tableRows[$aliasTable]['id_row'] . ',';
 
                 }else{
 
-                    $fields .= $concatTable . $this->tableRows[$table]['id_row'] . ',';
+                    $fields .= $concatTable . $this->tableRows[$aliasTable]['id_row'] . ',';
 
                 }
 
@@ -512,9 +524,7 @@ abstract class BaseModelMethods
             $arr['alias'] = trim($tableName[1]);
 
         }else{
-
             $arr['alias'] = $arr['table'] = $table;
-
         }
 
         return $arr;
