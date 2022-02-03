@@ -377,3 +377,7 @@ Fault: 02-02-2022 14:20:17 - Ошибка в SQL запросе: SHOW COLUMNS FR
 file /var/www/core/base/model/BaseModel.php
 In line 38
 
+Fault: 03-02-2022 9:16:56 - Ошибка в SQL запросе: SELECT goods.*,f.name as student_name,f.content,filters.* FROM goods LEFT JOIN goods_filters ON goods.id=goods_filters.teachers LEFT JOIN filters f ON goods_filters.students=f.id LEFT JOIN filters ON f.parent_id=filters.id WHERE goods.id IN ('16','17')  ORDER BY goods.id DESC  - 1054 Unknown column 'goods_filters.teachers' in 'on clause'
+file /var/www/core/base/model/BaseModel.php
+In line 38
+
